@@ -222,7 +222,7 @@
     box-shadow: 0 2px 8px rgba(44,26,14,0.04);
   }
   .story-card.active:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(44,26,14,0.14); }
-  .story-card.coming { opacity: 0.7; pointer-events: none; }
+  .story-card.coming { opacity: 0.75; pointer-events: none; cursor: default; }
   .story-thumb { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; }
   .story-thumb-label {
     position: absolute; top: 10px; left: 10px;
@@ -236,6 +236,11 @@
     background: #FFD700; color: #5C3A1E; border: 1px solid rgba(200,134,10,0.4);
     animation: badgePop 2s ease-in-out infinite;
   }
+  .story-card.coming .story-new-badge {
+    background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.25);
+    animation: none;
+  }
   @keyframes badgePop { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
   .story-body { padding: 1.2rem; }
   .story-body h3 { font-size: 1rem; font-weight: 800; color: var(--deep); margin-bottom: 0.3rem; }
@@ -243,7 +248,7 @@
   .story-meta { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 700; min-height: 24px; }
   .story-age { color: var(--text-muted); background: var(--saffron-light); padding: 2px 10px; border-radius: 50px; }
   .story-read { color: var(--saffron); margin-left: auto; }
-  .coming-badge { color: var(--text-muted); margin-left: auto; font-size: 0.72rem; }
+  .coming-badge { color: var(--saffron); margin-left: auto; font-size: 0.72rem; font-weight: 800; }
   .story-card.mahabharata .story-thumb { background: linear-gradient(135deg, #1a0a3e, #4a1a8a); }
   .story-card.mantra .story-thumb { background: linear-gradient(135deg, #7a4500, #e8a030); }
   .story-card.values .story-thumb { background: linear-gradient(135deg, #0a3a0a, #2a8a2a); }
@@ -408,10 +413,10 @@
         </div>
       </a>
 
-      <a class="story-card nature active" data-age="3-5" href="stories by age/3-5/why-the-river-sings.html">
+      <div class="story-card nature coming" data-age="3-5">
         <div class="story-thumb">
           <span class="story-thumb-label">Nature</span>
-          <span class="story-new-badge">New!</span>
+          <span class="story-new-badge">Coming Soon</span>
           🌊
         </div>
         <div class="story-body">
@@ -419,15 +424,15 @@
           <p>Ganga came down from the heavens with a song. But why does she sing? A story of creation, care and the sacred earth.</p>
           <div class="story-meta">
             <span class="story-age">Ages 4–7</span>
-            <span class="story-read">Read →</span>
+            <span class="coming-badge">✨ Coming Soon</span>
           </div>
         </div>
-      </a>
+      </div>
 
-      <a class="story-card values active" data-age="6-8" href="stories by age/6-8/the-boy-who-shared-his-last-roti.html">
+      <div class="story-card values coming" data-age="6-8">
         <div class="story-thumb">
           <span class="story-thumb-label">Values</span>
-          <span class="story-new-badge">New!</span>
+          <span class="story-new-badge">Coming Soon</span>
           🌳
         </div>
         <div class="story-body">
@@ -435,15 +440,15 @@
           <p>When a hungry stranger came to the village, young Gopal discovered that giving from the heart always returns tenfold.</p>
           <div class="story-meta">
             <span class="story-age">Ages 5–8</span>
-            <span class="story-read">Read →</span>
+            <span class="coming-badge">✨ Coming Soon</span>
           </div>
         </div>
-      </a>
+      </div>
 
-      <a class="story-card puranas active" data-age="6-8" href="stories by age/6-8/prahlad-and-the-pillar-of-fire.html">
+      <div class="story-card puranas coming" data-age="6-8">
         <div class="story-thumb">
           <span class="story-thumb-label">Puranas</span>
-          <span class="story-new-badge">New!</span>
+          <span class="story-new-badge">Coming Soon</span>
           🐚
         </div>
         <div class="story-body">
@@ -451,10 +456,10 @@
           <p>A young devotee's faith was stronger than a king's fury. A timeless story of love, trust and the power of a pure heart.</p>
           <div class="story-meta">
             <span class="story-age">Ages 6–10</span>
-            <span class="story-read">Read →</span>
+            <span class="coming-badge">✨ Coming Soon</span>
           </div>
         </div>
-      </a>
+      </div>
 
       <a class="story-card mahabharata active" data-age="7-10" href="stories by age/9-10/arjunas-doubt.html">
         <div class="story-thumb">
@@ -472,10 +477,10 @@
         </div>
       </a>
 
-      <a class="story-card dharma active" data-age="9-10" href="stories by age/9-10/king-harishchandras-promise.html">
+      <div class="story-card dharma coming" data-age="9-10">
         <div class="story-thumb">
           <span class="story-thumb-label">Dharma</span>
-          <span class="story-new-badge">New!</span>
+          <span class="story-new-badge">Coming Soon</span>
           ⚖️
         </div>
         <div class="story-body">
@@ -483,10 +488,10 @@
           <p>He lost everything — his kingdom, his family, his name. But one thing he never lost: the truth. A story of unbreakable dharma.</p>
           <div class="story-meta">
             <span class="story-age">Ages 8–10</span>
-            <span class="story-read">Read →</span>
+            <span class="coming-badge">✨ Coming Soon</span>
           </div>
         </div>
-      </a>
+      </div>
 
     </div>
   </div>
