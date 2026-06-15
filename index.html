@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="StoryVeda — Stories from the Vedas retold for little hearts. Ancient tales with warmth, wonder and love for ages 3 to 10.">
+<title>StoryVeda — Stories for Little Hearts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF6B00;
+    --saffron-mid: #F5923E;
+    --saffron-light: #FFF0E0;
+    --gold: #C8860A;
+    --gold-light: #FFF0D0;
+    --cream: #FFFDF5;
+    --peach: #FFC896;
+    --deep: #2C1A0E;
+    --warm-brown: #5C3A1E;
+    --text: #2C1A0E;
+    --text-muted: #7A5C40;
+    --border: rgba(200,134,10,0.15);
+    --radius: 18px;
+    --radius-sm: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  a { text-decoration: none; }
+
+  /* ── NAV ── */
+  nav {
+    position: relative; z-index: 10;
+    background: rgba(255,253,245,0.85); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--saffron); }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { font-weight: 600; font-size: 0.85rem; color: var(--warm-brown); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--saffron); }
+  .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { width: 22px; height: 2px; background: var(--warm-brown); border-radius: 2px; transition: 0.2s; }
+  .mobile-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; z-index: 99; background: var(--cream); border-bottom: 1px solid var(--border); padding: 1.2rem 2rem; flex-direction: column; gap: 1rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-weight: 600; color: var(--warm-brown); font-size: 0.95rem; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 92vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 80px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(180deg,
+      #ff8000 0%,
+      #ff9933 15%,
+      #ffb060 30%,
+      #ffc880 50%,
+      #ffddb0 68%,
+      #ffeecc 85%,
+      #fffdf5 100%
+    );
+  }
+  .hero-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 15% 10%, rgba(200,134,10,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 5%, rgba(200,134,10,0.3) 0%, transparent 100%),
+      radial-gradient(2px 2px at 55% 12%, rgba(255,122,0,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 7%, rgba(200,134,10,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 90% 15%, rgba(200,134,10,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 18%, rgba(200,134,10,0.3) 0%, transparent 100%),
+      radial-gradient(2px 2px at 65% 10%, rgba(255,122,0,0.3) 0%, transparent 100%);
+  }
+  .hero-sun {
+    position: absolute;
+    bottom: 28%; left: 50%; transform: translateX(-50%);
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(255,220,120,0.8) 0%, rgba(255,165,50,0.35) 40%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .hero-sun::after {
+    content: ''; position: absolute; inset: -20px;
+    background: radial-gradient(circle, rgba(255,200,80,0.25) 0%, transparent 60%);
+    border-radius: 50%;
+    animation: sunGlow 3s ease-in-out infinite alternate;
+  }
+  @keyframes sunGlow {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.15); opacity: 1; }
+  }
+  /* Floating sparkles */
+  .sparkle { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,200,80,0.6); z-index: 1; pointer-events: none; }
+  .sparkle:nth-child(1) { top: 18%; left: 12%; animation: float 4s ease-in-out infinite; }
+  .sparkle:nth-child(2) { top: 25%; right: 18%; animation: float 5s ease-in-out infinite 0.5s; }
+  .sparkle:nth-child(3) { top: 40%; left: 8%; animation: float 3.5s ease-in-out infinite 1s; width: 4px; height: 4px; }
+  .sparkle:nth-child(4) { top: 35%; right: 10%; animation: float 4.5s ease-in-out infinite 1.5s; width: 5px; height: 5px; }
+  .sparkle:nth-child(5) { top: 15%; left: 50%; animation: float 6s ease-in-out infinite 0.8s; width: 4px; height: 4px; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+    50% { transform: translateY(-18px) scale(1.5); opacity: 0.9; }
+  }
+  .hero-hills {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
+    height: 20%;
+    background: linear-gradient(180deg, #c89a5e, #b08040);
+    clip-path: polygon(
+      0% 100%, 0% 65%, 2% 60%, 5% 50%, 8% 60%, 12% 62%, 15% 48%, 18% 35%,
+      20% 38%, 23% 48%, 27% 55%, 30% 42%, 32% 30%, 34% 38%, 37% 48%,
+      40% 52%, 43% 40%, 46% 28%, 48% 35%, 50% 45%, 53% 52%,
+      56% 42%, 58% 32%, 60% 38%, 63% 48%, 66% 55%, 69% 45%, 72% 35%,
+      74% 40%, 77% 50%, 80% 52%, 83% 42%, 85% 32%, 87% 40%, 90% 50%,
+      93% 55%, 95% 48%, 97% 55%, 100% 58%, 100% 100%
+    );
+    opacity: 0.4;
+  }
+  .hero-om-bg {
+    position: absolute; font-family: 'Playfair Display', serif;
+    font-size: 18rem; color: rgba(200,134,10,0.05);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none; user-select: none; line-height: 1; z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,122,0,0.1); border: 1px solid rgba(255,122,0,0.25);
+    color: var(--saffron); font-size: 0.72rem; font-weight: 800;
+    padding: 5px 14px; border-radius: 50px; margin-bottom: 1.2rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .hero-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--saffron); animation: pulse 2s infinite; display: inline-block; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.5)} }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 700; line-height: 1.15; margin-bottom: 1rem;
+    color: var(--deep);
+  }
+  h1 em { font-style: italic; color: var(--saffron); }
+  .hero-sub {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    color: var(--warm-brown);
+    max-width: 480px; line-height: 1.75; margin-bottom: 2rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--saffron); color: white; padding: 13px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(255,122,0,0.35);
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,122,0,0.4); }
+  .btn-secondary {
+    background: white; color: var(--warm-brown); padding: 13px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem;
+    border: 1.5px solid rgba(200,134,10,0.25);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: var(--saffron-light); transform: translateY(-2px); }
+
+  /* ── SECTIONS ── */
+  section { padding: 4.5rem 2rem; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section-tag { display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin-bottom: 0.5rem; }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; line-height: 1.2; color: var(--deep); margin-bottom: 0.8rem; }
+  h2 em { font-style: italic; color: var(--saffron); }
+  .section-lead { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 540px; margin-bottom: 2.5rem; }
+
+  /* ── WHY STORYVEDA ── */
+  #why { background: linear-gradient(180deg, var(--cream), var(--saffron-light), var(--cream)); }
+  #why .section-inner { max-width: 1080px; }
+  #why .section-lead { max-width: 600px; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+  .why-card {
+    background: white; border-radius: var(--radius);
+    border: 1px solid var(--border); padding: 1.8rem 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(200,134,10,0.12); }
+  .why-card .why-icon {
+    font-size: 1.8rem; margin-bottom: 0.8rem;
+    width: 50px; height: 50px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-card:nth-child(1) .why-icon { background: var(--saffron-light); }
+  .why-card:nth-child(2) .why-icon { background: var(--gold-light); }
+  .why-card:nth-child(3) .why-icon { background: #f0eaff; }
+  .why-card:nth-child(4) .why-icon { background: #e8f8e8; }
+  .why-card h3 { font-size: 1rem; font-weight: 800; color: var(--deep); margin-bottom: 0.4rem; }
+  .why-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── AGE FILTERS ── */
+  .age-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .age-filter {
+    padding: 7px 18px; border-radius: 50px; border: 1.5px solid var(--border);
+    background: white; font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem; font-weight: 700; color: var(--warm-brown);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .age-filter:hover { border-color: var(--saffron-mid); color: var(--saffron); }
+  .age-filter.active { background: var(--saffron); color: white; border-color: var(--saffron); }
+
+  /* ── STORY GRID ── */
+  #stories { background: linear-gradient(180deg, #fff5e6, var(--cream)); }
+  .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .story-card {
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border); background: white;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; display: block; color: inherit;
+    box-shadow: 0 2px 8px rgba(44,26,14,0.04);
+  }
+  .story-card.active:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(44,26,14,0.14); }
+  .story-card.coming { opacity: 0.7; pointer-events: none; }
+  .story-thumb { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; }
+  .story-thumb-label {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 3px 10px; border-radius: 50px;
+  }
+  .story-new-badge {
+    position: absolute; top: 10px; right: 10px;
+    font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 3px 10px; border-radius: 50px;
+    background: #FFD700; color: #5C3A1E; border: 1px solid rgba(200,134,10,0.4);
+    animation: badgePop 2s ease-in-out infinite;
+  }
+  @keyframes badgePop { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+  .story-body { padding: 1.2rem; }
+  .story-body h3 { font-size: 1rem; font-weight: 800; color: var(--deep); margin-bottom: 0.3rem; }
+  .story-body p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.8rem; }
+  .story-meta { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 700; min-height: 24px; }
+  .story-age { color: var(--text-muted); background: var(--saffron-light); padding: 2px 10px; border-radius: 50px; }
+  .story-read { color: var(--saffron); margin-left: auto; }
+  .coming-badge { color: var(--text-muted); margin-left: auto; font-size: 0.72rem; }
+  .story-card.mahabharata .story-thumb { background: linear-gradient(135deg, #1a0a3e, #4a1a8a); }
+  .story-card.mantra .story-thumb { background: linear-gradient(135deg, #7a4500, #e8a030); }
+  .story-card.values .story-thumb { background: linear-gradient(135deg, #0a3a0a, #2a8a2a); }
+  .story-card.puranas .story-thumb { background: linear-gradient(135deg, #3a0a30, #b03080); }
+  .story-card.nature .story-thumb { background: linear-gradient(135deg, #0a2a5a, #2060b0); }
+  .story-card.dharma .story-thumb { background: linear-gradient(135deg, #4a1a0a, #c04020); }
+  .mahabharata .story-thumb-label { background: rgba(74,26,138,0.3); color: #c0a0ff; border: 1px solid rgba(74,26,138,0.4); }
+  .mantra .story-thumb-label { background: rgba(232,160,48,0.3); color: #fff; border: 1px solid rgba(232,160,48,0.4); }
+  .values .story-thumb-label { background: rgba(42,138,42,0.3); color: #90ee90; border: 1px solid rgba(42,138,42,0.4); }
+  .puranas .story-thumb-label { background: rgba(176,48,128,0.3); color: #ffb0d8; border: 1px solid rgba(176,48,128,0.4); }
+  .nature .story-thumb-label { background: rgba(32,96,176,0.3); color: #90c8ff; border: 1px solid rgba(32,96,176,0.4); }
+  .dharma .story-thumb-label { background: rgba(192,64,32,0.3); color: #ffb090; border: 1px solid rgba(192,64,32,0.4); }
+
+  /* ── ABOUT ── */
+  #about {
+    background: linear-gradient(180deg, var(--cream), var(--gold-light), var(--cream));
+    text-align: center;
+  }
+  #about .section-inner { max-width: 620px; }
+  #about p { font-size: 1rem; color: var(--warm-brown); line-height: 1.8; margin-bottom: 1rem; }
+  .about-sign { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--saffron); font-style: italic; margin-top: 0.5rem; }
+
+  /* ── SUBSCRIBE + CONTACT ── */
+  #connect {
+    background: var(--cream);
+    padding: 4rem 2rem 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .connect-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .connect-col h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--deep); margin-bottom: 0.6rem; }
+  .connect-col p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+  .email-row { display: flex; gap: 0.5rem; }
+  .email-row input {
+    flex: 1; padding: 10px 14px; border-radius: 50px;
+    border: 1.5px solid var(--border); background: white;
+    font-family: 'Nunito', sans-serif; font-size: 0.85rem; color: var(--text); outline: none;
+    transition: border 0.2s;
+  }
+  .email-row input::placeholder { color: #aaa; }
+  .email-row input:focus { border-color: var(--saffron); }
+  .email-row button {
+    background: var(--saffron); color: white; padding: 10px 20px;
+    border-radius: 50px; border: none; cursor: pointer;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem;
+    transition: background 0.2s; white-space: nowrap;
+  }
+  .email-row button:hover { background: var(--gold); }
+  .email-note { font-size: 0.72rem; color: #aaa; margin-top: 0.4rem; }
+  .contact-email { display: inline-flex; align-items: center; gap: 6px; color: var(--saffron); font-weight: 700; font-size: 0.9rem; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--cream); padding: 1.2rem 2rem; text-align: center; font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid var(--border); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .connect-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .email-row { flex-direction: column; }
+    #home { min-height: 80vh; padding: 60px 1.5rem 3rem; }
+    .hero-om-bg { font-size: 10rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Story<span>Veda</span></a>
+  <ul class="nav-links">
+    <li><a href="#stories">Stories</a></li>
+    <li><a href="#why">Why StoryVeda</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#connect">Subscribe</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#stories" onclick="closeMenu()">Stories</a>
+  <a href="#why" onclick="closeMenu()">Why StoryVeda</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#connect" onclick="closeMenu()">Subscribe</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-sun"></div>
+  <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+  <div class="hero-hills"></div>
+  <div class="hero-om-bg" aria-hidden="true">ॐ</div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Stories for little hearts</div>
+    <h1>Stories from the <em>Vedas</em><br>for little hearts</h1>
+    <p class="hero-sub">Ancient tales retold with warmth, wonder and love — for curious minds from ages 3 to 10.</p>
+    <div class="hero-btns">
+      <a href="#stories" class="btn-primary">Explore Stories ✨</a>
+      <a href="#connect" class="btn-secondary">Free Monthly Story 📖</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY STORYVEDA -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-tag">Why it matters</div>
+    <h2>Vedic stories for a <em>changing world</em></h2>
+    <p class="section-lead">In a fast-moving digital world, children need roots. Vedic stories offer timeless values — courage, kindness, truth — in a language young hearts understand. Every StoryVeda tale is an invitation to slow down, connect and grow together.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">📖</div>
+        <h3>Timeless Values</h3>
+        <p>Dharma, courage, compassion, truth — explored through characters and choices children remember.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌱</div>
+        <h3>Gentle Learning</h3>
+        <p>No philosophy, no complexity. Just warm stories that spark curiosity and quietly shape young hearts.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">👨‍👩‍👧‍👦</div>
+        <h3>Family Moments</h3>
+        <p>Designed to be read together — with reflection questions that turn storytime into conversation.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h3>Trusted & Calm</h3>
+        <p>Ad-free, thoughtfully made, age-appropriate. A gentle alternative in a noisy digital world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section id="stories">
+  <div class="section-inner">
+    <div class="section-tag">Story collection</div>
+    <h2>Tales that <em>light up</em> young hearts</h2>
+    <p class="section-lead">Each story is crafted to spark curiosity, conversation and a quiet sense of wonder in children aged 3–10.</p>
+    <div class="age-filters">
+      <button class="age-filter active" data-age="all" onclick="filterAge('all')">✨ All</button>
+      <button class="age-filter" data-age="3-5" onclick="filterAge('3-5')">💭 Little Dreamers (3–5)</button>
+      <button class="age-filter" data-age="6-8" onclick="filterAge('6-8')">🎨 Wonder Weavers (6–8)</button>
+      <button class="age-filter" data-age="9-10" onclick="filterAge('9-10')">🚀 Truth Seekers (9–10)</button>
+    </div>
+    <div class="stories-grid" id="storyGrid">
+
+      <a class="story-card mantra active" data-age="3-5" href="stories by age/3-5/the-sun-wakes-up.html">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Mantra</span>
+          <span class="story-new-badge">New!</span>
+          🌞
+        </div>
+        <div class="story-body">
+          <h3>The Sun Wakes Up</h3>
+          <p>A little girl learns the Gayatri mantra by watching her grandmother greet the sun every morning with love and gratitude.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 3–6</span>
+            <span class="story-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card nature active" data-age="3-5" href="stories by age/3-5/why-the-river-sings.html">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Nature</span>
+          <span class="story-new-badge">New!</span>
+          🌊
+        </div>
+        <div class="story-body">
+          <h3>Why the River Sings</h3>
+          <p>Ganga came down from the heavens with a song. But why does she sing? A story of creation, care and the sacred earth.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 4–7</span>
+            <span class="story-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card values active" data-age="6-8" href="stories by age/6-8/the-boy-who-shared-his-last-roti.html">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Values</span>
+          <span class="story-new-badge">New!</span>
+          🌳
+        </div>
+        <div class="story-body">
+          <h3>The Boy Who Shared His Last Roti</h3>
+          <p>When a hungry stranger came to the village, young Gopal discovered that giving from the heart always returns tenfold.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 5–8</span>
+            <span class="story-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card puranas active" data-age="6-8" href="stories by age/6-8/prahlad-and-the-pillar-of-fire.html">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Puranas</span>
+          <span class="story-new-badge">New!</span>
+          🐚
+        </div>
+        <div class="story-body">
+          <h3>Prahlad and the Pillar of Fire</h3>
+          <p>A young devotee's faith was stronger than a king's fury. A timeless story of love, trust and the power of a pure heart.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 6–10</span>
+            <span class="story-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card mahabharata active" data-age="7-10" href="stories by age/9-10/arjunas-doubt.html">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Mahabharata</span>
+          <span class="story-new-badge">New!</span>
+          🏹
+        </div>
+        <div class="story-body">
+          <h3>Arjuna's Doubt</h3>
+          <p>On the battlefield of Kurukshetra, Arjuna's heart trembled. But Krishna's words gave him the greatest courage of all.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 7–10</span>
+            <span class="story-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card dharma active" data-age="9-10" href="stories by age/9-10/king-harishchandras-promise.html">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Dharma</span>
+          <span class="story-new-badge">New!</span>
+          ⚖️
+        </div>
+        <div class="story-body">
+          <h3>King Harishchandra's Promise</h3>
+          <p>He lost everything — his kingdom, his family, his name. But one thing he never lost: the truth. A story of unbreakable dharma.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 8–10</span>
+            <span class="story-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-tag">Our story</div>
+    <h2>Why we made <em>StoryVeda</em></h2>
+    <p>StoryVeda was born from a simple wish — to share the beauty of Vedic stories with a new generation. No philosophy, no complexity. Just warm, kind tales that spark curiosity and gently shape young hearts.</p>
+    <p>Every story is retold with love, for parents reading aloud and children dreaming wide-eyed.</p>
+    <div class="about-sign">— The StoryVeda family 🙏</div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="connect-inner">
+    <div class="connect-col">
+      <h3>A free story every month</h3>
+      <p>Sign up and we'll send you a new story, a mantra activity and a colouring page — straight to your inbox, free, every month.</p>
+      <div class="email-row">
+        <input type="email" placeholder="your@email.com" id="emailInput">
+        <button onclick="subscribeEmail()">Subscribe ✨</button>
+      </div>
+      <p class="email-note">No spam. Just stories. Unsubscribe anytime.</p>
+    </div>
+    <div class="connect-col">
+      <h3>Say hello</h3>
+      <p>Schools, parents, publishers — we'd love to hear from you.</p>
+      <a class="contact-email" href="mailto:hello@storyveda.co.uk">✉️ hello@storyveda.co.uk</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 StoryVeda · Made with love, for little hearts 🙏</p>
+</footer>
+
+<script>
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+function subscribeEmail() {
+  const input = document.getElementById('emailInput');
+  if (input.value && input.value.includes('@')) {
+    alert('🙏 Welcome to the StoryVeda family! Your first story is on its way.');
+    input.value = '';
+  } else {
+    alert('Please enter a valid email address.');
+  }
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+function filterAge(age) {
+  document.querySelectorAll('.age-filter').forEach(b => b.classList.toggle('active', b.dataset.age === age));
+  document.querySelectorAll('.story-card').forEach(c => {
+    if (age === 'all' || c.dataset.age === age) {
+      c.style.display = 'block';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>

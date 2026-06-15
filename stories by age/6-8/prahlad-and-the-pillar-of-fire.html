@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Prahlad and the Pillar of Fire — A StoryVeda tale for ages 6–10 from the Puranas. A young devotee's unwavering love for Vishnu reveals that faith burns brighter than any fire.">
+<title>Prahlad and the Pillar of Fire | StoryVeda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #1a0030;
+    --purple: #4a0070;
+    --purple-mid: #7b1fa2;
+    --purple-light: #e1bee7;
+    --gold: #c8860a;
+    --gold-light: #fff8e1;
+    --flame: #ff6030;
+    --flame-mid: #ff8a50;
+    --cream: #fcf6ff;
+    --text: #1a0030;
+    --text-muted: #6a4a7a;
+    --border: rgba(74,0,112,0.12);
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,0,48,0.92); backdrop-filter: blur(12px);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--purple-light); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-back { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--gold); }
+
+  .story-hero {
+    min-height: 60vh;
+    background: linear-gradient(160deg, #0d0020 0%, #1a0030 25%, #4a0070 55%, #c8860a 85%, #ff6030 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-flame-bg {
+    position: absolute; font-size: 30rem; line-height: 1;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none; user-select: none; opacity: 0.04;
+  }
+  .hero-sparks {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,96,48,0.3) 0%, transparent 100%),
+      radial-gradient(2px 2px at 25% 8%, rgba(200,134,10,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 15%, rgba(255,96,48,0.2) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 5%, rgba(200,134,10,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 18%, rgba(255,96,48,0.25) 0%, transparent 100%),
+      radial-gradient(2px 2px at 85% 10%, rgba(200,134,10,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 22%, rgba(255,96,48,0.2) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(200,134,10,0.12) 0%, rgba(255,96,48,0.06) 40%, transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .story-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(225,190,231,0.1); border: 1px solid rgba(225,190,231,0.2);
+    color: var(--purple-light); font-size: 0.75rem; font-weight: 800;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 1.2rem;
+    letter-spacing: 0.06em; text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .story-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700; color: white; line-height: 1.15;
+    margin-bottom: 1rem; position: relative; z-index: 1;
+  }
+  .story-hero h1 em { font-style: italic; color: var(--flame); }
+  .story-hero .tagline {
+    font-size: 1.1rem; color: rgba(255,255,255,0.7);
+    max-width: 520px; line-height: 1.7; margin-bottom: 2rem;
+    position: relative; z-index: 1;
+  }
+  .story-meta-chips { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .meta-chip {
+    padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+  }
+
+  .story-container { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .story-intro {
+    background: linear-gradient(135deg, #1a0030, #4a0070);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
+    border: 1px solid rgba(225,190,231,0.2);
+  }
+  .story-intro .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.6rem; color: var(--purple-light);
+    display: block; margin-bottom: 0.4rem; text-align: center;
+  }
+  .story-intro .translation { font-size: 0.88rem; color: rgba(255,255,255,0.55); text-align: center; font-style: italic; }
+
+  .story-section { margin-bottom: 2.8rem; }
+  .scene-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--flame); margin-bottom: 0.8rem;
+  }
+  .scene-label::before { content: ''; width: 24px; height: 2px; background: var(--flame); border-radius: 2px; }
+
+  .story-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 700; color: var(--deep);
+    margin-bottom: 1rem; line-height: 1.25;
+  }
+  .story-section p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #2a1a3a; margin-bottom: 1rem;
+  }
+
+  .mantra-quote {
+    background: linear-gradient(135deg, #1a0030, #4a0070);
+    border-radius: var(--radius); padding: 2rem 2.5rem;
+    margin: 2rem 0; border-left: 4px solid var(--gold);
+    position: relative; text-align: center;
+  }
+  .mantra-quote .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.4rem; color: var(--gold);
+    display: block; margin-bottom: 0.6rem; letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+  .mantra-quote .translation {
+    font-size: 0.9rem; font-style: italic;
+    color: rgba(255,255,255,0.7); line-height: 1.7; margin: 0;
+  }
+
+  .story-moment {
+    border-radius: var(--radius); padding: 3rem 2rem;
+    text-align: center; margin: 2.5rem 0;
+    background: linear-gradient(135deg, #2a0040 0%, #ff6030 100%);
+    border: 1px solid rgba(200,134,10,0.25);
+  }
+  .story-moment .moment-emoji { font-size: 5rem; display: block; margin-bottom: 1rem; }
+  .story-moment img { width: 100%; max-width: 500px; border-radius: 16px; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3); height: auto; }
+  .story-moment p { color: rgba(255,255,255,0.75); font-size: 0.9rem; font-style: italic; max-width: 400px; margin: 0 auto; }
+
+  .value-box {
+    background: var(--gold-light);
+    border: 1px solid rgba(200,134,10,0.25);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 3rem 0;
+  }
+  .value-box .value-tag {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.8rem;
+    display: block;
+  }
+  .value-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--deep); margin-bottom: 0.6rem; }
+  .value-box p { font-size: 0.95rem; color: #3a1a4a; line-height: 1.7; margin-bottom: 0; }
+
+  .reflect-box {
+    background: #f3e6ff; border: 1px solid rgba(74,0,112,0.15);
+    border-radius: var(--radius); padding: 2rem; margin: 2rem 0;
+  }
+  .reflect-box h3 { font-size: 1rem; font-weight: 800; color: var(--purple); margin-bottom: 1rem; }
+  .reflect-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .reflect-box li { font-size: 0.92rem; color: #2a1a3a; line-height: 1.6; display: flex; gap: 10px; }
+  .reflect-box li::before { content: ''; flex-shrink: 0; }
+
+  .quiz-box {
+    background: linear-gradient(135deg, #1a0030, #4a0070);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 2rem 0; border: 1px solid rgba(200,134,10,0.25);
+    color: white;
+  }
+  .quiz-box h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold); margin-bottom: 0.4rem; }
+  .quiz-box .quiz-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+  .quiz-question { margin-bottom: 1.2rem; }
+  .quiz-q { font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; display: flex; gap: 6px; }
+  .quiz-q .q-num { color: var(--gold); }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; }
+  .quiz-opt {
+    padding: 10px 14px; border-radius: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; text-align: left;
+    font-family: 'Nunito', sans-serif;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .quiz-opt:hover { background: rgba(255,255,255,0.12); }
+  .quiz-opt.correct { background: rgba(42,180,80,0.25); border-color: rgba(42,180,80,0.4); color: #90ee90; }
+  .quiz-opt.wrong { background: rgba(220,60,60,0.2); border-color: rgba(220,60,60,0.3); color: #ff9090; }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.6; }
+  .quiz-opt .opt-icon { font-size: 0.8rem; width: 16px; text-align: center; }
+  .quiz-result { margin-top: 1.5rem; padding: 1rem; border-radius: 12px; text-align: center; display: none; }
+  .quiz-result.show { display: block; }
+  .quiz-result h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .quiz-result p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+  .quiz-result.perfect { background: rgba(42,180,80,0.15); border: 1px solid rgba(42,180,80,0.3); }
+  .quiz-result.perfect h4 { color: #90ee90; }
+  .quiz-result.good { background: rgba(200,134,10,0.12); border: 1px solid rgba(200,134,10,0.25); }
+  .quiz-result.good h4 { color: var(--gold); }
+  .quiz-result.try-again { background: rgba(220,60,60,0.1); border: 1px solid rgba(220,60,60,0.2); }
+  .quiz-result.try-again h4 { color: #ff9090; }
+  .quiz-restart {
+    display: inline-block; margin-top: 1rem; padding: 8px 20px;
+    border-radius: 50px; background: rgba(255,255,255,0.1);
+    color: var(--gold); border: 1px solid rgba(255,255,255,0.2);
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.82rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .quiz-restart:hover { background: rgba(255,255,255,0.2); }
+
+  .story-nav { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .btn-primary {
+    background: var(--flame); color: white;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+  .btn-secondary {
+    background: white; color: var(--purple);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    border: 1.5px solid rgba(74,0,112,0.2);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: var(--purple-light); transform: translateY(-2px); }
+
+  footer {
+    background: var(--deep); color: rgba(255,255,255,0.5);
+    padding: 2rem; text-align: center; font-size: 0.82rem;
+  }
+  footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .story-container { padding: 2.5rem 1.2rem 4rem; }
+    .mantra-quote { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../index.html">Story<span>Veda</span></a>
+  <a class="nav-back" href="../../index.html#stories">← Back to Stories</a>
+</nav>
+
+<div class="story-hero">
+  <div class="hero-sparks"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-flame-bg" aria-hidden="true">🔥</div>
+  <div class="story-badge">🐚 Puranas</div>
+  <h1>Prahlad and the Pillar of <em>Fire</em></h1>
+  <p class="tagline">A boy refused to stop loving. His father refused to understand. But faith burns brighter than any fire.</p>
+  <div class="story-meta-chips">
+    <span class="meta-chip">Ages 6–10</span>
+    <span class="meta-chip">📖 10 min read</span>
+    <span class="meta-chip">✦ Faith</span>
+    <span class="meta-chip">✦ Courage</span>
+    <span class="meta-chip">✦ Devotion</span>
+  </div>
+</div>
+
+<div class="story-container">
+
+  <!-- Scene 1 -->
+  <div class="story-section">
+    <div class="scene-label">Scene one</div>
+    <h2>The King Who Hated God's Name</h2>
+    <p>Long ago, there was a demon king named Hiranyakashipu.</p>
+    <p>He was strong. He was proud. And he had a rule: no one in his kingdom was allowed to say the name of Vishnu.</p>
+    <p>Not ever.</p>
+    <p>But his own little son, Prahlad, whispered it from the moment he woke up.</p>
+    <p>Vishnu. Vishnu. Vishnu.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🟡</span>
+    <p>[Image generation prompt: A grand ancient Indian palace throne room, a powerful dark-skinned demon king Hiranyakashipu seated on a massive stone throne with golden armour and a fierce crown, courtiers bowing in fear around him, torches burning on tall pillars, dramatic shadows, flat watercolour children's book illustration with deep indigo and burnt gold palette, imposing but not grotesque, no text]</p>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="story-section">
+    <div class="scene-label">Scene two</div>
+    <h2>The Boy Who Would Not Stop</h2>
+    <p>Hiranyakashipu called Prahlad to his court.</p>
+    <p>"Stop saying that name," he said. His voice shook the floor.</p>
+    <p>Prahlad looked up at his father with calm, clear eyes.</p>
+    <p>"I cannot, Father. Vishnu is everywhere. In the trees. In the water. In you. In me. How can I stop?"</p>
+    <p>The king's face went dark as a storm cloud.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🟠</span>
+    <p>[Image generation prompt: A small gentle-faced Indian boy around 8 years old in simple white dhoti sitting cross-legged on a stone floor, eyes closed in peaceful meditation, hands folded, soft golden glow surrounding him, dark palace walls around him with stern guards watching in confusion, children's book watercolour illustration, calm and luminous atmosphere, warm gold and cool grey contrast, no text]</p>
+  </div>
+
+  <!-- Scene 3 -->
+  <div class="story-section">
+    <div class="scene-label">Scene three</div>
+    <h2>Holika's Fire</h2>
+    <p>The king tried many times to frighten Prahlad. Nothing worked.</p>
+    <p>So he called upon his sister, Holika, who had a magical cloak that could not burn.</p>
+    <p>"Sit in the fire with the boy," he said. "The fire will take him and spare you."</p>
+    <p>Holika agreed. She wrapped her cloak around herself, and pulled Prahlad into the flames.</p>
+    <p>But Prahlad only closed his eyes and said the name.</p>
+    <p>Vishnu.</p>
+    <p>The cloak flew from Holika and wrapped itself around Prahlad instead. The fire did not touch him.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🔴</span>
+    <p>[Image generation prompt: A large outdoor fire at night under a dark starry Indian sky, a woman in a dark cloak with a magical shawl sitting in the flames looking triumphant, a small boy sitting peacefully in her lap with eyes closed and hands folded, the fire beginning to shift and swirl away from the boy, villagers watching in shock from the edges, flat watercolour illustration with deep indigo night sky and vivid orange-red fire, dramatic and magical mood, no text]</p>
+  </div>
+
+  <!-- Scene 4 -->
+  <div class="story-section">
+    <div class="scene-label">Scene four</div>
+    <h2>The Pillar Breaks Open</h2>
+    <p>Hiranyakashipu grabbed Prahlad by the collar.</p>
+    <p>"WHERE IS YOUR VISHNU NOW?" he roared, striking a stone pillar. "Is he in THIS?"</p>
+    <p>A sound like thunder rolled through the palace.</p>
+    <p>The pillar cracked. Then split. Then shattered.</p>
+    <p>From inside the pillar, blazing with golden light, stepped Narasimha — half lion, half man — the form Vishnu took to protect his devotee.</p>
+    <p>Prahlad folded his hands. Tears ran down his face — not from fear, but from love.</p>
+    <p>He had always known. Vishnu was everywhere.</p>
+    <p>Even in the pillar.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🌟</span>
+    <p>[Image generation prompt: A massive stone palace pillar cracking open from the inside, brilliant golden light bursting through the cracks, emerging from the light a half-lion half-man divine form Narasimha with a serene yet powerful expression, a small boy standing before him with arms raised in joy and devotion, the demon king recoiling in shock, watercolour children's book illustration with burst of amber and white radiance, sense of divine wonder and protection, no text]</p>
+  </div>
+
+  <!-- MANTRA -->
+  <div class="mantra-quote">
+    <span class="devanagari">ॐ नमो भगवते वासुदेवाय</span>
+    <p class="translation">"I bow to the divine Lord Vasudeva — the one who dwells in all beings. This is the mantra Prahlad chanted. It is one of the most beloved Vishnu mantras, repeated across generations as a prayer of pure devotion."</p>
+  </div>
+
+  <!-- REFLECT -->
+  <div class="reflect-box">
+    <h3>💬 Talk About It Together</h3>
+    <ul>
+      <li>🔥 Prahlad kept his faith even when it was very hard and even frightening. Have you ever believed in something strongly even when others said you were wrong?</li>
+      <li>🦁 Narasimha came from inside a pillar. What do you think that means — can God really be everywhere?</li>
+      <li>🙏 Prahlad was not angry at his father. He just kept praying. Do you think that's hard to do? Why?</li>
+      <li>💫 The fire didn't hurt Prahlad because of his devotion. What is something invisible — like love or courage — that has ever protected you?</li>
+    </ul>
+  </div>
+
+  <div class="quiz-box" id="quizBox">
+    <h3>🧠 Story Quiz</h3>
+    <p class="quiz-sub">See how well you remember Prahlad's story — pick the right answer for each!</p>
+    <div id="quizQuestions"></div>
+    <div class="quiz-result" id="quizResult">
+      <h4 id="quizResultTitle"></h4>
+      <p id="quizResultMsg"></p>
+      <button class="quiz-restart" onclick="resetQuiz()">🔄 Try Again</button>
+    </div>
+  </div>
+
+  <div class="story-nav">
+    <a href="../../index.html#stories" class="btn-secondary">← All Stories</a>
+    <a href="../../index.html#connect" class="btn-primary">Get Next Story ✨</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>Part of <a href="../../index.html">StoryVeda</a> — Where ancient wisdom meets the magic of storytelling 🙏</p>
+</footer>
+
+<script>
+const quizData = [
+  {
+    q: "What rule did King Hiranyakashipu make in his kingdom?",
+    opts: ["No one could laugh", "No one could say the name of Vishnu", "No one could leave the palace", "No one could eat after sunset"],
+    correct: 1
+  },
+  {
+    q: "Why did Prahlad keep saying Vishnu's name?",
+    opts: ["To make his father angry", "Because he was told to", "He could not stop — Vishnu was everywhere, in everything", "He forgot the rule"],
+    correct: 2
+  },
+  {
+    q: "Who helped Hiranyakashipu try to get rid of Prahlad using fire?",
+    opts: ["A guard", "Holika", "A magician", "A snake"],
+    correct: 1
+  },
+  {
+    q: "What happened when Holika sat in the fire with Prahlad?",
+    opts: ["They both burned", "The cloak flew from Holika and protected Prahlad instead", "The fire went out", "Holika saved him"],
+    correct: 1
+  },
+  {
+    q: "What emerged from the pillar when Hiranyakashipu struck it?",
+    opts: ["A shower of sparks", "Lord Vishnu as Narasimha — half lion, half man", "A great storm", "A sword of fire"],
+    correct: 1
+  }
+];
+const emojis = ['👑', '🟠', '🔴', '🌟', '🦁'];
+let answered = [];
+
+function renderQuiz() {
+  const container = document.getElementById('quizQuestions');
+  answered = quizData.map(() => null);
+  container.innerHTML = quizData.map((item, i) => `
+    <div class="quiz-question" data-q="${i}">
+      <div class="quiz-q"><span class="q-num">${emojis[i]}</span> ${item.q}</div>
+      <div class="quiz-options">
+        ${item.opts.map((opt, j) => `
+          <button class="quiz-opt" data-q="${i}" data-opt="${j}" onclick="pickAnswer(${i}, ${j}, this)">
+            <span class="opt-icon"></span> ${opt}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('quizResult').classList.remove('show');
+}
+
+function pickAnswer(qIdx, optIdx, btn) {
+  if (answered[qIdx] !== null) return;
+  answered[qIdx] = optIdx;
+  const item = quizData[qIdx];
+  const allBtns = document.querySelectorAll(`.quiz-opt[data-q="${qIdx}"]`);
+  allBtns.forEach(b => b.classList.add('disabled'));
+  allBtns.forEach(b => {
+    const i = parseInt(b.dataset.opt);
+    const icon = b.querySelector('.opt-icon');
+    if (i === item.correct) {
+      b.classList.add('correct');
+      icon.textContent = '✅';
+    } else if (i === optIdx) {
+      b.classList.add('wrong');
+      icon.textContent = '❌';
+    } else {
+      icon.textContent = '  ';
+    }
+  });
+  if (btn !== allBtns[item.correct]) {
+    allBtns[item.correct].querySelector('.opt-icon').textContent = '✅';
+  }
+  checkQuizComplete();
+}
+
+function checkQuizComplete() {
+  if (answered.some(a => a === null)) return;
+  const correct = answered.filter((a, i) => a === quizData[i].correct).length;
+  const total = quizData.length;
+  const result = document.getElementById('quizResult');
+  const title = document.getElementById('quizResultTitle');
+  const msg = document.getElementById('quizResultMsg');
+  result.classList.remove('perfect', 'good', 'try-again');
+  if (correct === total) {
+    result.classList.add('perfect', 'show');
+    title.textContent = '🎉 Perfect! All correct!';
+    msg.textContent = 'You listened so well! Prahlad would be proud of you. 🦁';
+  } else if (correct >= 3) {
+    result.classList.add('good', 'show');
+    title.textContent = `🌟 ${correct}/${total} — Great job!`;
+    msg.textContent = 'Almost there! Read the story once more and try again.';
+  } else {
+    result.classList.add('try-again', 'show');
+    title.textContent = `💪 ${correct}/${total} — Keep trying!`;
+    msg.textContent = 'Every time you read this story, your faith grows stronger. Give it another go!';
+  }
+}
+
+function resetQuiz() {
+  renderQuiz();
+  window.scrollTo({ top: document.getElementById('quizBox').offsetTop - 100, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

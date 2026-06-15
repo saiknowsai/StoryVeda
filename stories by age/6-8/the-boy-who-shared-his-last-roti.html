@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Boy Who Shared His Last Roti — A StoryVeda tale for ages 5–8 about generosity. A young boy named Arjun learns that sharing even your last roti fills the heart more than the belly.">
+<title>The Boy Who Shared His Last Roti | StoryVeda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #3a1a0a;
+    --terracotta: #c06030;
+    --terracotta-mid: #d08040;
+    --terracotta-light: #ffe8d0;
+    --warm: #c06030;
+    --warm-light: #ffe8d0;
+    --cream: #fff8f0;
+    --text: #3a1a0a;
+    --text-muted: #8a6a50;
+    --border: rgba(192,96,48,0.15);
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(58,26,10,0.92); backdrop-filter: blur(12px);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--warm-light); text-decoration: none; }
+  .nav-logo span { color: var(--terracotta); }
+  .nav-back { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--warm-light); }
+
+  /* HERO */
+  .story-hero {
+    min-height: 60vh;
+    background: linear-gradient(160deg, #2a0e00 0%, #4a1a0a 25%, #7a3a1a 55%, #c06030 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,232,208,0.25) 0%, transparent 100%),
+      radial-gradient(2px 2px at 25% 8%, rgba(255,232,208,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 20%, rgba(255,232,208,0.15) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 70% 5%, rgba(255,232,208,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 12%, rgba(255,232,208,0.25) 0%, transparent 100%),
+      radial-gradient(2px 2px at 40% 10%, rgba(255,232,208,0.15) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 18%, rgba(255,232,208,0.2) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(192,96,48,0.15) 0%, transparent 60%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .story-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,232,208,0.12); border: 1px solid rgba(255,232,208,0.25);
+    color: var(--warm-light); font-size: 0.75rem; font-weight: 800;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 1.2rem;
+    letter-spacing: 0.06em; text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .story-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700; color: white; line-height: 1.15;
+    margin-bottom: 1rem; position: relative; z-index: 1;
+  }
+  .story-hero h1 em { font-style: italic; color: var(--warm-light); }
+  .story-hero .tagline {
+    font-size: 1.1rem; color: rgba(255,255,255,0.7);
+    max-width: 520px; line-height: 1.7; margin-bottom: 2rem;
+    position: relative; z-index: 1;
+  }
+  .story-meta-chips { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .meta-chip {
+    padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+  }
+
+  /* STORY BODY */
+  .story-container { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .story-intro {
+    background: linear-gradient(135deg, #4a1a0a, #7a3a1a);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
+    border: 1px solid rgba(255,232,208,0.2);
+  }
+  .story-intro .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.6rem; color: var(--warm-light);
+    display: block; margin-bottom: 0.4rem; text-align: center;
+  }
+  .story-intro .translation { font-size: 0.88rem; color: rgba(255,255,255,0.55); text-align: center; font-style: italic; }
+
+  .story-section { margin-bottom: 2.8rem; }
+  .scene-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--terracotta); margin-bottom: 0.8rem;
+  }
+  .scene-label::before { content: ''; width: 24px; height: 2px; background: var(--terracotta); border-radius: 2px; }
+
+  .story-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 700; color: var(--deep);
+    margin-bottom: 1rem; line-height: 1.25;
+  }
+  .story-section p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #3a2a1a; margin-bottom: 1rem;
+  }
+
+  /* WISDOM QUOTE */
+  .wisdom-quote {
+    background: linear-gradient(135deg, #2a0e00, #5a2010);
+    border-radius: var(--radius); padding: 2rem 2.5rem;
+    margin: 2rem 0; border-left: 4px solid var(--terracotta-mid);
+    position: relative; text-align: center;
+  }
+  .wisdom-quote .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.4rem; color: var(--warm-light);
+    display: block; margin-bottom: 0.6rem; letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+  .wisdom-quote .translation {
+    font-size: 0.9rem; font-style: italic;
+    color: rgba(255,255,255,0.7); line-height: 1.7; margin: 0;
+  }
+
+  /* ILLUSTRATED MOMENT */
+  .story-moment {
+    border-radius: var(--radius); padding: 3rem 2rem;
+    text-align: center; margin: 2.5rem 0;
+    background: linear-gradient(135deg, #4a1a0a 0%, #c06030 100%);
+    border: 1px solid rgba(255,232,208,0.2);
+  }
+  .story-moment .moment-emoji { font-size: 5rem; display: block; margin-bottom: 1rem; }
+  .story-moment img { width: 100%; max-width: 500px; border-radius: 16px; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3); height: auto; }
+  .story-moment p { color: rgba(255,255,255,0.7); font-size: 0.9rem; font-style: italic; max-width: 400px; margin: 0 auto; }
+
+  /* VALUE LEARNED */
+  .value-box {
+    background: var(--warm-light);
+    border: 1px solid rgba(192,96,48,0.25);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 3rem 0;
+  }
+  .value-box .value-tag {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--terracotta); margin-bottom: 0.8rem;
+    display: block;
+  }
+  .value-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #3a1a0a; margin-bottom: 0.6rem; }
+  .value-box p { font-size: 0.95rem; color: #6a3a1a; line-height: 1.7; margin-bottom: 0; }
+
+  /* REFLECT */
+  .reflect-box {
+    background: #f5ede0; border: 1px solid rgba(192,96,48,0.2);
+    border-radius: var(--radius); padding: 2rem; margin: 2rem 0;
+  }
+  .reflect-box h3 { font-size: 1rem; font-weight: 800; color: var(--terracotta); margin-bottom: 1rem; }
+  .reflect-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .reflect-box li { font-size: 0.92rem; color: #4a3a2a; line-height: 1.6; display: flex; gap: 10px; }
+  .reflect-box li::before { content: ''; flex-shrink: 0; }
+
+  /* QUIZ */
+  .quiz-box {
+    background: linear-gradient(135deg, #4a1a0a, #a05030);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 2rem 0; border: 1px solid rgba(255,232,208,0.2);
+    color: white;
+  }
+  .quiz-box h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--warm-light); margin-bottom: 0.4rem; }
+  .quiz-box .quiz-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+  .quiz-question { margin-bottom: 1.2rem; }
+  .quiz-q { font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; display: flex; gap: 6px; }
+  .quiz-q .q-num { color: var(--warm-light); }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; }
+  .quiz-opt {
+    padding: 10px 14px; border-radius: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; text-align: left;
+    font-family: 'Nunito', sans-serif;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .quiz-opt:hover { background: rgba(255,255,255,0.12); }
+  .quiz-opt.correct { background: rgba(42,180,80,0.25); border-color: rgba(42,180,80,0.4); color: #90ee90; }
+  .quiz-opt.wrong { background: rgba(220,60,60,0.2); border-color: rgba(220,60,60,0.3); color: #ff9090; }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.6; }
+  .quiz-opt .opt-icon { font-size: 0.8rem; width: 16px; text-align: center; }
+  .quiz-result { margin-top: 1.5rem; padding: 1rem; border-radius: 12px; text-align: center; display: none; }
+  .quiz-result.show { display: block; }
+  .quiz-result h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .quiz-result p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+  .quiz-result.perfect { background: rgba(42,180,80,0.15); border: 1px solid rgba(42,180,80,0.3); }
+  .quiz-result.perfect h4 { color: #90ee90; }
+  .quiz-result.good { background: rgba(255,200,50,0.12); border: 1px solid rgba(255,200,50,0.25); }
+  .quiz-result.good h4 { color: #ffd700; }
+  .quiz-result.try-again { background: rgba(220,60,60,0.1); border: 1px solid rgba(220,60,60,0.2); }
+  .quiz-result.try-again h4 { color: #ff9090; }
+  .quiz-restart {
+    display: inline-block; margin-top: 1rem; padding: 8px 20px;
+    border-radius: 50px; background: rgba(255,255,255,0.1);
+    color: var(--warm-light); border: 1px solid rgba(255,255,255,0.2);
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.82rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .quiz-restart:hover { background: rgba(255,255,255,0.2); }
+
+  /* NAV BUTTONS */
+  .story-nav { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .btn-primary {
+    background: var(--terracotta); color: white;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #b05020; transform: translateY(-2px); }
+  .btn-secondary {
+    background: white; color: var(--terracotta);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    border: 1.5px solid rgba(192,96,48,0.25);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: var(--warm-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,0.5);
+    padding: 2rem; text-align: center; font-size: 0.82rem;
+  }
+  footer a { color: var(--warm-light); text-decoration: none; font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .story-container { padding: 2.5rem 1.2rem 4rem; }
+    .wisdom-quote { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../index.html">Story<span>Veda</span></a>
+  <a class="nav-back" href="../../index.html#stories">← Back to Stories</a>
+</nav>
+
+<!-- HERO -->
+<div class="story-hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="story-badge">🌳 Values</div>
+  <h1>The Boy Who Shared His <em>Last Roti</em></h1>
+  <p class="tagline">A young boy named Arjun walked a long road with only one roti to his name. What he gave away came back — not as food, but as something far greater.</p>
+  <div class="story-meta-chips">
+    <span class="meta-chip">Ages 5–8</span>
+    <span class="meta-chip">📖 8 min read</span>
+    <span class="meta-chip">✦ Generosity</span>
+    <span class="meta-chip">✦ Seva</span>
+    <span class="meta-chip">✦ Gratitude</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="story-container">
+
+  <!-- Scene 1 -->
+  <div class="story-section">
+    <div class="scene-label">Scene one</div>
+    <h2>The Long, Dusty Road</h2>
+    <p>Arjun had been walking since morning.</p>
+    <p>His village was far behind him, and his grandmother's house was still far ahead. In his little bundle, he had just one thing left to eat — one roti, wrapped in a banana leaf, that his mother had packed with love.</p>
+    <p>"Save it for when you are very hungry," she had said.</p>
+    <p>Arjun patted the bundle. He was already hungry. But he kept walking.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🟡</span>
+    <p>[Image generation prompt: Warm golden-hour Indian village landscape, a young boy around 7 years old with dark eyes and simple cotton kurta, walking barefoot along a dusty ochre path lined with neem trees, carrying a small cloth bundle tied at the end of a stick, expression hopeful and gentle, style flat illustrated children's book with soft watercolour textures, rich saffron and terracotta palette, no text]</p>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="story-section">
+    <div class="scene-label">Scene two</div>
+    <h2>The Old Woman Under the Tree</h2>
+    <p>Under a wide peepal tree, Arjun saw an old woman sitting alone. Her sari was dusty and her hands shook.</p>
+    <p>"Beta," she said softly, "I have not eaten since yesterday. My legs gave up on me here."</p>
+    <p>Arjun stopped.</p>
+    <p>He thought about his one roti. He thought about how hungry he was. He thought about how far he still had to go.</p>
+    <p>Then he opened his bundle.</p>
+    <p>"Please take it," he said. "My mother made it this morning. It is still a little warm."</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🟠</span>
+    <p>[Image generation prompt: An elderly Indian woman with a white saree and silver bangles sitting under a large peepal tree, looking tired and frail, a clay pot beside her, dappled afternoon light filtering through leaves, a young boy approaching with curiosity and care, soft watercolour children's book illustration, warm amber and sage green tones, gentle and compassionate mood, no text]</p>
+  </div>
+
+  <!-- Scene 3 -->
+  <div class="story-section">
+    <div class="scene-label">Scene three</div>
+    <h2>The Gift That Came Back</h2>
+    <p>Arjun sat under the tree to rest his tired feet. His stomach growled. He had nothing left.</p>
+    <p>Then — plop! A ripe berry landed in his lap.</p>
+    <p>He looked up. A little squirrel sat on a branch, tilting its head at him.</p>
+    <p>Then another berry. And another.</p>
+    <p>Soon, there were berries enough for a meal. Sweet, juicy, and cool.</p>
+    <p>Arjun laughed. He did not know if the squirrel understood kindness. But somehow, it felt like the world was saying: well done.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🔴</span>
+    <p>[Image generation prompt: Same young Indian boy sitting under the peepal tree resting, a small brown squirrel approaching him holding a wild berry in its mouth, golden late afternoon light, nearby a flowering champa tree drops blossoms at his feet, sense of quiet wonder and magic, soft flat children's book watercolour illustration, amber warm tones with touches of pink and green, joyful and peaceful atmosphere, no text]</p>
+  </div>
+
+  <!-- Scene 4 -->
+  <div class="story-section">
+    <div class="scene-label">Scene four</div>
+    <h2>Grandmother's Door</h2>
+    <p>Arjun reached his grandmother's house just as the stars were coming out.</p>
+    <p>She pulled him into a hug that smelled like cardamom and old stories.</p>
+    <p>"You look well, my child," she said, holding his face. "And happy."</p>
+    <p>"I am, Patti," Arjun said.</p>
+    <p>He did not tell her about the roti straight away. He just smiled.</p>
+    <p>Some things are too full to fit in words.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🌸</span>
+    <p>[Image generation prompt: A cosy Indian village home at twilight, warm oil lamp glowing in the doorway, a plump elderly woman in a yellow saree with open arms welcoming a young boy who is running toward her, marigold garlands on the door frame, fireflies beginning to appear in the garden, soft watercolour children's book illustration, deep turmeric yellow and indigo evening palette, feeling of homecoming and love, no text]</p>
+  </div>
+
+  <!-- MANTRA -->
+  <div class="wisdom-quote">
+    <span class="devanagari">दातव्यमिति यद्दानं दीयतेऽनुपकारिणे।<br>देशे काले च पात्रे च तद्दानं सात्त्विकं स्मृतम्।।</span>
+    <p class="translation">"The gift that is given simply because it is right to give — to one who cannot return it, at the right place, time, and to the right person — that is the highest, purest giving." — Bhagavad Gita 17.20</p>
+  </div>
+
+  <!-- REFLECT -->
+  <div class="reflect-box">
+    <h3>💬 Talk About It Together</h3>
+    <ul>
+      <li>🌾 Arjun gave away his last roti. That's the hardest kind of sharing. Have you ever shared something you really didn't want to part with? How did it feel after?</li>
+      <li>🐿️ Do you think the squirrel knew Arjun had been kind? Or was it just a coincidence? What do you believe?</li>
+      <li>🙏 Seva means serving others without wanting anything back. Can you think of one small seva you could do today — at home, at school, or anywhere?</li>
+      <li>🍃 Arjun's mother packed the roti "with love." What is something someone has given you that felt full of love, even if it was small?</li>
+    </ul>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-box" id="quizBox">
+    <h3>🧠 Story Quiz</h3>
+    <p class="quiz-sub">See how well you remember Arjun's story — pick the right answer for each!</p>
+    <div id="quizQuestions"></div>
+    <div class="quiz-result" id="quizResult">
+      <h4 id="quizResultTitle"></h4>
+      <p id="quizResultMsg"></p>
+      <button class="quiz-restart" onclick="resetQuiz()">🔄 Try Again</button>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="story-nav">
+    <a href="../../index.html#stories" class="btn-secondary">← All Stories</a>
+    <a href="../../index.html#connect" class="btn-primary">Get Next Story ✨</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>Part of <a href="../../index.html">StoryVeda</a> — Where ancient wisdom meets the magic of storytelling 🙏</p>
+</footer>
+
+<script>
+const quizData = [
+  {
+    q: "What was Arjun carrying in his cloth bundle?",
+    opts: ["A handful of berries", "One roti wrapped in a banana leaf", "A golden coin", "A gift for his grandmother"],
+    correct: 1
+  },
+  {
+    q: "Who did Arjun meet under the peepal tree?",
+    opts: ["A young boy his age", "A travelling musician", "An old woman who had not eaten since yesterday", "A squirrel with a berry"],
+    correct: 2
+  },
+  {
+    q: "What did Arjun give to the old woman?",
+    opts: ["Water from his bottle", "His only roti", "His walking stick", "A ride to his grandmother's house"],
+    correct: 1
+  },
+  {
+    q: "What did the squirrel bring to Arjun after he gave away his roti?",
+    opts: ["A leaf", "A nut", "Berries", "A flower"],
+    correct: 2
+  },
+  {
+    q: "What did Arjun's grandmother's hug smell like?",
+    opts: ["Fresh bread and honey", "Cardamom and old stories", "Soap and flowers", "Tea and biscuits"],
+    correct: 1
+  }
+];
+const emojis = ['🌾', '🟠', '🔴', '🐿️', '🌸'];
+let answered = [];
+
+function renderQuiz() {
+  const container = document.getElementById('quizQuestions');
+  answered = quizData.map(() => null);
+  container.innerHTML = quizData.map((item, i) => `
+    <div class="quiz-question" data-q="${i}">
+      <div class="quiz-q"><span class="q-num">${emojis[i]}</span> ${item.q}</div>
+      <div class="quiz-options">
+        ${item.opts.map((opt, j) => `
+          <button class="quiz-opt" data-q="${i}" data-opt="${j}" onclick="pickAnswer(${i}, ${j}, this)">
+            <span class="opt-icon"></span> ${opt}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('quizResult').classList.remove('show');
+}
+
+function pickAnswer(qIdx, optIdx, btn) {
+  if (answered[qIdx] !== null) return;
+  answered[qIdx] = optIdx;
+  const item = quizData[qIdx];
+  const allBtns = document.querySelectorAll(`.quiz-opt[data-q="${qIdx}"]`);
+  allBtns.forEach(b => b.classList.add('disabled'));
+  allBtns.forEach(b => {
+    const i = parseInt(b.dataset.opt);
+    const icon = b.querySelector('.opt-icon');
+    if (i === item.correct) {
+      b.classList.add('correct');
+      icon.textContent = '✅';
+    } else if (i === optIdx) {
+      b.classList.add('wrong');
+      icon.textContent = '❌';
+    } else {
+      icon.textContent = '  ';
+    }
+  });
+  if (btn !== allBtns[item.correct]) {
+    allBtns[item.correct].querySelector('.opt-icon').textContent = '✅';
+  }
+  checkQuizComplete();
+}
+
+function checkQuizComplete() {
+  if (answered.some(a => a === null)) return;
+  const correct = answered.filter((a, i) => a === quizData[i].correct).length;
+  const total = quizData.length;
+  const result = document.getElementById('quizResult');
+  const title = document.getElementById('quizResultTitle');
+  const msg = document.getElementById('quizResultMsg');
+  result.classList.remove('perfect', 'good', 'try-again');
+  if (correct === total) {
+    result.classList.add('perfect', 'show');
+    title.textContent = '🎉 Perfect! All correct!';
+    msg.textContent = 'You listened so well! Arjun would be proud of you. 🌳';
+  } else if (correct >= 3) {
+    result.classList.add('good', 'show');
+    title.textContent = `🌟 ${correct}/${total} — Great job!`;
+    msg.textContent = 'Almost there! Read the story once more and try again.';
+  } else {
+    result.classList.add('try-again', 'show');
+    title.textContent = `💪 ${correct}/${total} — Keep trying!`;
+    msg.textContent = 'Every time you read the story, you learn something new. Give it another go!';
+  }
+}
+
+function resetQuiz() {
+  renderQuiz();
+  window.scrollTo({ top: document.getElementById('quizBox').offsetTop - 100, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

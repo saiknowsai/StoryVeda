@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="StoryVeda — Where ancient Vedic wisdom meets the magic of storytelling for children. Stories, mantras and values for young hearts.">
+<title>StoryVeda | Stories Rooted in the Vedas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #E8670A;
+    --saffron-light: #FFF0E0;
+    --saffron-mid: #F5A04A;
+    --gold: #C8860A;
+    --gold-light: #FFF8E1;
+    --cream: #FFFDF5;
+    --deep: #2C1A0E;
+    --warm-brown: #5C3A1E;
+    --lotus-pink: #E8547A;
+    --lotus-light: #FFF0F3;
+    --sky: #3A7BD5;
+    --sky-light: #EEF4FF;
+    --leaf: #3A7A3A;
+    --leaf-light: #F0F7EE;
+    --purple: #6B3FA0;
+    --purple-light: #F3EEFF;
+    --text: #2C1A0E;
+    --text-muted: #7A5C40;
+    --border: rgba(200,134,10,0.18);
+    --radius: 18px;
+    --radius-sm: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,253,245,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--saffron); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-weight: 600; font-size: 0.9rem; color: var(--warm-brown); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--saffron); }
+  .nav-cta { background: var(--saffron); color: white !important; padding: 8px 20px; border-radius: 50px; font-weight: 700 !important; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--gold) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--warm-brown); border-radius: 2px; }
+  .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99; background: var(--cream); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; flex-direction: column; gap: 1.2rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { text-decoration: none; font-weight: 600; color: var(--warm-brown); font-size: 1rem; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 2rem 5rem;
+    position: relative; overflow: hidden;
+  }
+
+  /* Animated sky background */
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(180deg,
+      #1a0840 0%,
+      #2d1060 20%,
+      #7a3010 55%,
+      #e8670a 75%,
+      #f5a04a 88%,
+      #fff0cc 100%
+    );
+  }
+  /* Stars */
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 8%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 28% 14%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 45% 5%, rgba(255,230,150,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 67% 12%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 82% 7%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 93% 18%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 7% 22%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 55% 18%, rgba(255,230,150,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 38% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 75% 22%, rgba(255,255,255,0.7) 0%, transparent 100%);
+  }
+  /* Sun glow */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 18%; left: 50%; transform: translateX(-50%);
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(255,220,100,0.6) 0%, rgba(232,103,10,0.3) 40%, transparent 70%);
+    border-radius: 50%;
+  }
+  /* Silhouette */
+  .hero-silhouette {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
+    height: 22%;
+    background: #1a0a06;
+    clip-path: polygon(
+      0% 100%, 0% 60%, 3% 55%, 5% 40%, 7% 55%, 10% 58%, 12% 45%, 15% 30%, 17% 45%, 20% 55%,
+      22% 50%, 25% 35%, 27% 20%, 28% 10%, 29% 20%, 30% 35%, 32% 50%,
+      35% 55%, 38% 42%, 40% 30%, 42% 42%, 45% 52%,
+      48% 48%, 50% 35%, 52% 25%, 53% 15%, 54% 25%, 55% 35%, 57% 48%,
+      60% 52%, 62% 40%, 65% 28%, 67% 40%, 70% 50%,
+      72% 55%, 75% 48%, 78% 38%, 80% 48%, 83% 55%,
+      85% 52%, 88% 42%, 90% 52%, 93% 58%, 95% 50%, 97% 58%, 100% 55%, 100% 100%
+    );
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+    color: #fff8e0; font-size: 0.78rem; font-weight: 700;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 1.5rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    backdrop-filter: blur(8px);
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #ffd080; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    font-weight: 700; line-height: 1.12; margin-bottom: 1.2rem;
+    color: #ffffff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  h1 em { font-style: italic; color: #ffd080; }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255,248,220,0.85);
+    max-width: 520px; line-height: 1.75; margin-bottom: 2.5rem;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  }
+  .hero-om {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 3rem; color: rgba(255,208,128,0.5);
+    display: block; margin-bottom: 0.5rem; letter-spacing: 0.1em;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--saffron); color: white; padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 18px rgba(232,103,10,0.4);
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,103,10,0.45); }
+  .btn-secondary {
+    background: rgba(255,255,255,0.15); color: white; padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.4); backdrop-filter: blur(8px);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section-tag { display: inline-block; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin-bottom: 0.6rem; }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.2; color: var(--deep); margin-bottom: 1rem; }
+  h2 em { font-style: italic; color: var(--saffron); }
+  .section-lead { font-size: 1.05rem; color: var(--text-muted); line-height: 1.75; max-width: 560px; margin-bottom: 3rem; }
+
+  /* ── STORIES ── */
+  #stories { background: var(--cream); }
+  .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; }
+  .story-card {
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border); background: white;
+    transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;
+    text-decoration: none; display: block; color: inherit;
+  }
+  .story-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(44,26,14,0.1); }
+  .story-thumb { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 5rem; position: relative; }
+  .story-thumb-label {
+    position: absolute; top: 12px; left: 12px;
+    font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 4px 10px; border-radius: 50px;
+  }
+  .story-body { padding: 1.4rem; }
+  .story-body h3 { font-size: 1.05rem; font-weight: 800; color: var(--deep); margin-bottom: 0.4rem; }
+  .story-body p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+  .story-meta { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; font-weight: 700; }
+  .story-age { color: var(--text-muted); background: var(--saffron-light); padding: 3px 10px; border-radius: 50px; }
+  .story-read { color: var(--saffron); margin-left: auto; }
+  .story-card.mahabharata .story-thumb { background: linear-gradient(135deg, #1a0a3e, #4a1a8a); }
+  .story-card.mantra .story-thumb { background: linear-gradient(135deg, #7a4500, #e8a030); }
+  .story-card.values .story-thumb { background: linear-gradient(135deg, #0a3a0a, #2a8a2a); }
+  .story-card.puranas .story-thumb { background: linear-gradient(135deg, #3a0a30, #b03080); }
+  .story-card.nature .story-thumb { background: linear-gradient(135deg, #0a2a5a, #2060b0); }
+  .story-card.dharma .story-thumb { background: linear-gradient(135deg, #4a1a0a, #c04020); }
+  .mahabharata .story-thumb-label { background: rgba(74,26,138,0.3); color: #c0a0ff; border: 1px solid rgba(74,26,138,0.4); }
+  .mantra .story-thumb-label { background: rgba(232,160,48,0.3); color: #fff; border: 1px solid rgba(232,160,48,0.4); }
+  .values .story-thumb-label { background: rgba(42,138,42,0.3); color: #90ee90; border: 1px solid rgba(42,138,42,0.4); }
+  .puranas .story-thumb-label { background: rgba(176,48,128,0.3); color: #ffb0d8; border: 1px solid rgba(176,48,128,0.4); }
+  .nature .story-thumb-label { background: rgba(32,96,176,0.3); color: #90c8ff; border: 1px solid rgba(32,96,176,0.4); }
+  .dharma .story-thumb-label { background: rgba(192,64,32,0.3); color: #ffb090; border: 1px solid rgba(192,64,32,0.4); }
+  .view-all-wrap { text-align: center; margin-top: 2.5rem; }
+  .btn-outline { background: white; color: var(--warm-brown); padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; border: 1.5px solid var(--border); transition: background 0.2s, transform 0.15s; }
+  .btn-outline:hover { background: var(--saffron-light); transform: translateY(-2px); }
+
+  /* ── BOTTOM BLOCK ── */
+  #bottom { background: var(--deep); color: white; }
+  .bottom-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; align-items: start; }
+
+  /* Book */
+  .bottom-book h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--saffron-mid); margin-bottom: 0.8rem; }
+  .bottom-book p { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.2rem; }
+  .book-mini {
+    width: 80px; height: 110px;
+    background: linear-gradient(145deg, var(--saffron), var(--gold));
+    border-radius: 4px 12px 12px 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin-bottom: 1rem;
+    box-shadow: -4px 4px 16px rgba(200,134,10,0.3);
+    position: relative;
+  }
+  .book-mini::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: rgba(0,0,0,0.2); border-radius: 4px 0 0 4px; }
+  .bottom-book ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.4rem; }
+  .bottom-book li { font-size: 0.82rem; color: rgba(255,255,255,0.55); display: flex; gap: 8px; }
+  .bottom-book li::before { content: '✦'; color: var(--saffron-mid); flex-shrink: 0; font-size: 0.65rem; margin-top: 3px; }
+  .btn-saffron { background: var(--saffron); color: white; padding: 11px 22px; border-radius: 50px; font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: background 0.2s; display: inline-block; }
+  .btn-saffron:hover { background: var(--saffron-mid); }
+
+  /* Newsletter */
+  .bottom-newsletter { border-left: 1px solid rgba(255,255,255,0.08); border-right: 1px solid rgba(255,255,255,0.08); padding: 0 2rem; }
+  .bottom-newsletter h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--saffron-mid); margin-bottom: 0.8rem; }
+  .bottom-newsletter p { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.4rem; }
+  .email-stack { display: flex; flex-direction: column; gap: 0.6rem; }
+  .email-stack input {
+    padding: 12px 16px; border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.07);
+    color: white; font-family: 'Nunito', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border 0.2s;
+  }
+  .email-stack input::placeholder { color: rgba(255,255,255,0.35); }
+  .email-stack input:focus { border-color: var(--saffron-mid); }
+  .email-stack button {
+    background: var(--saffron); color: white; padding: 12px;
+    border-radius: 50px; border: none;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .email-stack button:hover { background: var(--saffron-mid); }
+  .email-note { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 0.5rem; }
+
+  /* Contact */
+  .bottom-contact h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--saffron-mid); margin-bottom: 0.8rem; }
+  .bottom-contact p { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.4rem; }
+  .contact-items { display: flex; flex-direction: column; gap: 0.8rem; }
+  .contact-item { display: flex; align-items: center; gap: 10px; }
+  .c-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .contact-item .c-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-item .c-value { font-size: 0.88rem; color: rgba(255,255,255,0.8); font-weight: 600; }
+
+  /* ── FOOTER ── */
+  footer { background: #1a0a06; color: rgba(255,255,255,0.4); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; border-top: 1px solid rgba(255,255,255,0.05); }
+  footer a { color: var(--saffron-mid); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .bottom-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .bottom-newsletter { border: none; padding: 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 2rem 0; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Story<span>Veda</span></a>
+  <ul class="nav-links">
+    <li><a href="#stories">Stories</a></li>
+    <li><a href="#bottom">Books</a></li>
+    <li><a href="#bottom" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#stories" onclick="closeMenu()">Stories</a>
+  <a href="#bottom" onclick="closeMenu()">Books</a>
+  <a href="#bottom" onclick="closeMenu()">Get in Touch</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-silhouette"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Stories for young hearts</div>
+    <span class="hero-om">ॐ</span>
+    <h1>Where <em>ancient wisdom</em><br>meets the magic of stories</h1>
+    <p class="hero-sub">StoryVeda brings the Vedas alive for children through vibrant stories, gentle mantras and timeless values — for ages 3 to 10.</p>
+    <div class="hero-btns">
+      <a href="#stories" class="btn-primary">Explore Stories ✨</a>
+      <a href="#bottom" class="btn-secondary">Join Our Family</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section id="stories">
+  <div class="section-inner">
+    <div class="section-tag">Story collection</div>
+    <h2>Tales that <em>light up</em> little minds</h2>
+    <p class="section-lead">Each story is crafted to spark curiosity, conversation and a quiet sense of wonder in children aged 3–10.</p>
+    <div class="stories-grid">
+
+      <a class="story-card mahabharata" href="arjunas-doubt.html">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Mahabharata</span>
+          🏹
+        </div>
+        <div class="story-body">
+          <h3>Arjuna's Doubt</h3>
+          <p>On the battlefield of Kurukshetra, Arjuna's heart trembled. But Krishna's words gave him the greatest courage of all.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 7–10</span>
+            <span class="story-read">Read Story →</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="story-card mantra">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Mantra</span>
+          🌞
+        </div>
+        <div class="story-body">
+          <h3>The Sun Wakes Up</h3>
+          <p>A little girl learns the Gayatri mantra by watching her grandmother greet the sun every morning with love and gratitude.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 3–6</span>
+            <span class="story-read">Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card values">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Values</span>
+          🌳
+        </div>
+        <div class="story-body">
+          <h3>The Boy Who Shared His Last Roti</h3>
+          <p>When a hungry stranger came to the village, young Gopal discovered that giving from the heart always returns tenfold.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 5–8</span>
+            <span class="story-read">Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card puranas">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Puranas</span>
+          🐚
+        </div>
+        <div class="story-body">
+          <h3>Prahlad and the Pillar of Fire</h3>
+          <p>A young devotee's faith was stronger than a king's fury. A timeless story of love, trust and the power of a pure heart.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 6–10</span>
+            <span class="story-read">Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card nature">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Nature</span>
+          🌊
+        </div>
+        <div class="story-body">
+          <h3>Why the River Sings</h3>
+          <p>Ganga came down from the heavens with a song. But why does she sing? A story of creation, care and the sacred earth.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 4–7</span>
+            <span class="story-read">Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card dharma">
+        <div class="story-thumb">
+          <span class="story-thumb-label">Dharma</span>
+          ⚖️
+        </div>
+        <div class="story-body">
+          <h3>King Harishchandra's Promise</h3>
+          <p>He lost everything — his kingdom, his family, his name. But one thing he never lost: the truth. A story of unbreakable dharma.</p>
+          <div class="story-meta">
+            <span class="story-age">Ages 8–10</span>
+            <span class="story-read">Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="view-all-wrap">
+      <a href="#bottom" class="btn-outline">More stories coming soon →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM BLOCK: Books + Newsletter + Contact -->
+<section id="bottom">
+  <div class="bottom-inner">
+
+    <!-- Books -->
+    <div class="bottom-book">
+      <div class="book-mini">📚</div>
+      <h3>StoryVeda Colouring Book</h3>
+      <p>Bring Vedic characters to life in your child's hands — illustrated pages, simple captions and activity prompts.</p>
+      <ul>
+        <li>30+ hand-crafted illustration pages</li>
+        <li>Introductions to each deity and their story</li>
+        <li>Activity prompts for home and classroom</li>
+        <li>Available on Amazon KDP</li>
+      </ul>
+      <a href="mailto:hello@storyveda.co.uk" class="btn-saffron">Pre-order / Enquire</a>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="bottom-newsletter">
+      <h3>A free story every month</h3>
+      <p>Sign up and we'll send you a new story, mantra activity and colouring page straight to your inbox — free, every month.</p>
+      <div class="email-stack">
+        <input type="email" placeholder="your@email.com" id="emailInput">
+        <button onclick="subscribeEmail()">Join Free ✨</button>
+      </div>
+      <p class="email-note">No spam. Just stories. Unsubscribe anytime.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="bottom-contact">
+      <h3>Say hello</h3>
+      <p>Schools, parents, publishers — we'd love to hear from you.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="c-icon" style="background:rgba(232,103,10,0.2)">✉️</div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-value">hello@storyveda.co.uk</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon" style="background:rgba(58,122,58,0.2)">🌍</div>
+          <div>
+            <div class="c-label">Based in</div>
+            <div class="c-value">Newcastle, UK</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon" style="background:rgba(232,84,122,0.2)">📱</div>
+          <div>
+            <div class="c-label">Follow</div>
+            <div class="c-value">@storyveda</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 StoryVeda · A UK education and creative initiative · <a href="mailto:hello@storyveda.co.uk">hello@storyveda.co.uk</a></p>
+</footer>
+
+<script>
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+function subscribeEmail() {
+  const input = document.getElementById('emailInput');
+  if (input.value && input.value.includes('@')) {
+    alert('🙏 Welcome to the StoryVeda family! Your first story is on its way.');
+    input.value = '';
+  } else {
+    alert('Please enter a valid email address.');
+  }
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>

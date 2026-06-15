@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Arjuna's Doubt — A StoryVeda tale from the Mahabharata for children. On the battlefield of Kurukshetra, Arjuna's heart trembled. But Krishna's words gave him the greatest courage of all.">
+<title>Arjuna's Doubt | StoryVeda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #1a0a3e;
+    --purple: #4a1a8a;
+    --purple-mid: #7a40c0;
+    --purple-light: #c0a0ff;
+    --gold: #C8860A;
+    --gold-light: #FFF8E1;
+    --saffron: #E8670A;
+    --cream: #FFFDF5;
+    --text: #1a0a3e;
+    --text-muted: #6a4a8a;
+    --border: rgba(74,26,138,0.15);
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,10,62,0.95); backdrop-filter: blur(12px);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--purple-light); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-back { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--purple-light); }
+
+  /* HERO */
+  .story-hero {
+    min-height: 60vh;
+    background: linear-gradient(160deg, #0a0420 0%, #1a0a3e 40%, #2a1060 70%, #4a1a8a 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-om {
+    position: absolute; font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 24rem; color: rgba(192,160,255,0.04);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none; user-select: none; line-height: 1;
+  }
+  .stars {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 90%, rgba(255,255,255,0.3) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .story-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(192,160,255,0.1); border: 1px solid rgba(192,160,255,0.25);
+    color: var(--purple-light); font-size: 0.75rem; font-weight: 800;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 1.2rem;
+    letter-spacing: 0.06em; text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .story-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700; color: white; line-height: 1.15;
+    margin-bottom: 1rem; position: relative; z-index: 1;
+  }
+  .story-hero h1 em { font-style: italic; color: var(--purple-light); }
+  .story-hero .tagline {
+    font-size: 1.1rem; color: rgba(255,255,255,0.65);
+    max-width: 520px; line-height: 1.7; margin-bottom: 2rem;
+    position: relative; z-index: 1;
+  }
+  .story-meta-chips { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .meta-chip {
+    padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+  }
+
+  /* STORY BODY */
+  .story-container { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .story-intro {
+    background: linear-gradient(135deg, #1a0a3e, #2a1060);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
+    border: 1px solid rgba(192,160,255,0.2);
+  }
+  .story-intro .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.6rem; color: var(--purple-light);
+    display: block; margin-bottom: 0.4rem; text-align: center;
+  }
+  .story-intro .translation { font-size: 0.88rem; color: rgba(255,255,255,0.55); text-align: center; font-style: italic; }
+
+  .story-section { margin-bottom: 2.8rem; }
+  .scene-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--purple-mid); margin-bottom: 0.8rem;
+  }
+  .scene-label::before { content: ''; width: 24px; height: 2px; background: var(--purple-mid); border-radius: 2px; }
+
+  .story-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 700; color: var(--deep);
+    margin-bottom: 1rem; line-height: 1.25;
+  }
+  .story-section p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #2a1a4a; margin-bottom: 1rem;
+  }
+
+  /* KRISHNA QUOTE */
+  .krishna-quote {
+    background: linear-gradient(135deg, #0a0420, #1a0a3e);
+    border-radius: var(--radius); padding: 2rem 2.5rem;
+    margin: 2rem 0; border-left: 4px solid var(--purple-light);
+    position: relative;
+  }
+  .krishna-quote .speaker {
+    font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--purple-light); margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .krishna-quote .speaker::after { content: '🦚'; font-size: 1rem; }
+  .krishna-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-style: italic;
+    color: rgba(255,255,255,0.9); line-height: 1.75; margin: 0;
+  }
+
+  /* ILLUSTRATED MOMENT */
+  .story-moment {
+    border-radius: var(--radius); padding: 3rem 2rem;
+    text-align: center; margin: 2.5rem 0;
+    background: linear-gradient(135deg, #1a0a3e 0%, #4a1a8a 100%);
+    border: 1px solid rgba(192,160,255,0.2);
+  }
+  .story-moment .moment-emoji { font-size: 5rem; display: block; margin-bottom: 1rem; }
+  .story-moment p { color: rgba(255,255,255,0.7); font-size: 0.9rem; font-style: italic; max-width: 400px; margin: 0 auto; }
+
+  /* VALUE LEARNED */
+  .value-box {
+    background: var(--gold-light);
+    border: 1px solid rgba(200,134,10,0.25);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 3rem 0;
+  }
+  .value-box .value-tag {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.8rem;
+    display: block;
+  }
+  .value-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #4a2a00; margin-bottom: 0.6rem; }
+  .value-box p { font-size: 0.95rem; color: #6a4a00; line-height: 1.7; margin-bottom: 0; }
+
+  /* REFLECT */
+  .reflect-box {
+    background: #f0eaff; border: 1px solid rgba(74,26,138,0.2);
+    border-radius: var(--radius); padding: 2rem; margin: 2rem 0;
+  }
+  .reflect-box h3 { font-size: 1rem; font-weight: 800; color: var(--purple); margin-bottom: 1rem; }
+  .reflect-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .reflect-box li { font-size: 0.92rem; color: #3a1a6a; line-height: 1.6; display: flex; gap: 10px; }
+  .reflect-box li::before { content: '🪔'; flex-shrink: 0; }
+
+  /* NAV BUTTONS */
+  .story-nav { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .btn-primary {
+    background: var(--purple); color: white;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--purple-mid); transform: translateY(-2px); }
+  .btn-secondary {
+    background: white; color: var(--purple);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    border: 1.5px solid rgba(74,26,138,0.25);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: #f0eaff; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,0.5);
+    padding: 2rem; text-align: center; font-size: 0.82rem;
+  }
+  footer a { color: var(--purple-light); text-decoration: none; font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .story-container { padding: 2.5rem 1.2rem 4rem; }
+    .krishna-quote { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Story<span>Veda</span></a>
+  <a class="nav-back" href="index.html#stories">← Back to Stories</a>
+</nav>
+
+<!-- HERO -->
+<div class="story-hero">
+  <div class="stars"></div>
+  <div class="hero-om" aria-hidden="true">ॐ</div>
+  <div class="story-badge">🏹 Mahabharata</div>
+  <h1>Arjuna's <em>Doubt</em></h1>
+  <p class="tagline">On the battlefield of Kurukshetra, Arjuna's heart trembled. But Krishna's words gave him the greatest courage of all.</p>
+  <div class="story-meta-chips">
+    <span class="meta-chip">Ages 7–10</span>
+    <span class="meta-chip">📖 10 min read</span>
+    <span class="meta-chip">✦ Dharma</span>
+    <span class="meta-chip">✦ Courage</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="story-container">
+
+  <div class="story-intro">
+    <span class="devanagari">यदा यदा हि धर्मस्य ग्लानिर्भवति भारत</span>
+    <span class="translation">"Whenever dharma declines, O Arjuna, I arise." — Bhagavad Gita 4.7</span>
+  </div>
+
+  <!-- Scene 1 -->
+  <div class="story-section">
+    <div class="scene-label">Scene one</div>
+    <h2>Two great armies, face to face</h2>
+    <p>The sun had barely risen over the vast plain of Kurukshetra. The air was thick with the sound of conch shells, war drums and the restless stamping of horses. Two enormous armies stood facing each other — thousands of warriors, elephants and chariots, stretching as far as the eye could see.</p>
+    <p>On one side stood the Pandavas — five brothers who had been cheated of their kingdom and had fought for years to reclaim it. On the other stood the Kauravas — their cousins, who had taken what was not theirs by right.</p>
+    <p>Today was the day it would all be decided.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🏹</span>
+    <p>Arjuna stood tall in his golden chariot, his famous bow Gandiva in his hand, ready to fight.</p>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="story-section">
+    <div class="scene-label">Scene two</div>
+    <h2>A trembling heart</h2>
+    <p>Arjuna was the greatest archer in the world. No one could match his skill. But as he looked across the battlefield, something changed inside him.</p>
+    <p>He could see familiar faces in the enemy army. His teachers, his uncles, his cousins — people he had grown up with, eaten meals with, laughed with as a child. His hands began to shake. His famous bow slipped from his fingers. His knees felt weak.</p>
+    <p>"Krishna," he whispered to his dear friend and charioteer, "I cannot do this. How can I fight my own family? What is the point of a kingdom if everyone I love is gone? I would rather give up everything and become a beggar."</p>
+    <p>And with that, the great Arjuna sat down in his chariot and wept.</p>
+  </div>
+
+  <div class="krishna-quote">
+    <div class="speaker">Arjuna speaks</div>
+    <p>"My limbs fail me, my mouth is parched. My body trembles. I see no good in killing my own kinsmen in this battle."</p>
+  </div>
+
+  <!-- Scene 3 -->
+  <div class="story-section">
+    <div class="scene-label">Scene three</div>
+    <h2>Krishna's gentle smile</h2>
+    <p>Krishna looked at his dear friend with great love. He did not scold Arjuna. He did not laugh at him. He understood — because he understood everything.</p>
+    <p>Gently, he placed a hand on Arjuna's shoulder.</p>
+    <p>"Dear Arjuna," Krishna said softly, "you are grieving for those who do not need your grief. A wise person does not mourn for the living or the dead."</p>
+    <p>And then, slowly, Krishna began to speak — and his words were like a lamp lit in a dark room.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🦚</span>
+    <p>Krishna's eyes were deep and calm as the ocean. When he spoke, even the wind seemed to listen.</p>
+  </div>
+
+  <!-- Scene 4 -->
+  <div class="story-section">
+    <div class="scene-label">Scene four</div>
+    <h2>The wisdom of the soul</h2>
+    <p>Krishna explained to Arjuna something wonderful — that the true self, the soul inside each person, can never be hurt or destroyed. It is like a flame that no wind can blow out. The body changes, grows old and one day stops — but the soul lives on, always.</p>
+    <p>"So do not grieve," Krishna said, "for those you see before you. You are not fighting their souls. You are simply fulfilling your duty — your dharma — as a warrior and a protector of what is right."</p>
+    <p>He told Arjuna that doing one's duty — without worrying about reward or loss, without fear — is the greatest form of courage there is.</p>
+  </div>
+
+  <div class="krishna-quote">
+    <div class="speaker">Krishna speaks</div>
+    <p>"You have a right to perform your duty, but you are not entitled to the fruits of your actions. Never consider yourself the cause of results, and never be attached to not doing your duty."</p>
+  </div>
+
+  <!-- Scene 5 -->
+  <div class="story-section">
+    <div class="scene-label">Scene five</div>
+    <h2>Courage born from within</h2>
+    <p>As Krishna spoke, something changed in Arjuna. The trembling stopped. The confusion cleared. It was as if a great fog had lifted and the sun was shining through.</p>
+    <p>Arjuna realised that his sadness had come from thinking only of himself — his feelings, his fears, his grief. But real courage meant thinking of what was right, not just what was comfortable.</p>
+    <p>He picked up his bow Gandiva. His hands were steady now. His eyes were clear.</p>
+    <p>"Krishna," he said, "my doubt is gone. I understand now. I am ready."</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">⚡</span>
+    <p>The great conch shells sounded across the battlefield — and Arjuna, with courage in his heart, rose to fulfil his dharma.</p>
+  </div>
+
+  <!-- VALUE LEARNED -->
+  <div class="value-box">
+    <span class="value-tag">✦ What we learn from this story</span>
+    <h3>Courage is doing what is right, even when it is hard</h3>
+    <p>Arjuna was not weak because he felt afraid. Even the greatest warriors feel fear and doubt. What made him brave was listening, thinking clearly, and choosing to do what was right — even when it was difficult. True courage always starts on the inside.</p>
+  </div>
+
+  <!-- REFLECT -->
+  <div class="reflect-box">
+    <h3>🪔 Talk about it together</h3>
+    <ul>
+      <li>Have you ever had to do something difficult even though you were scared? How did it feel?</li>
+      <li>Why do you think Arjuna felt sad when he saw people he loved on the other side?</li>
+      <li>Krishna said the soul can never be hurt. What do you think that means?</li>
+      <li>What does doing your duty mean to you in your own life — at school or at home?</li>
+    </ul>
+  </div>
+
+  <!-- NAV -->
+  <div class="story-nav">
+    <a href="index.html#stories" class="btn-secondary">← All Stories</a>
+    <a href="index.html#newsletter" class="btn-primary">Get Next Story ✨</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>Part of <a href="index.html">StoryVeda</a> — Where ancient wisdom meets the magic of storytelling 🙏</p>
+</footer>
+
+</body>
+</html>

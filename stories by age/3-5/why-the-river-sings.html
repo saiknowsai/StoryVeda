@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Why the River Sings — A StoryVeda tale for ages 4–7 about a little girl who learns to listen. A gentle story of wonder, gratitude, and the song that flows through all of nature.">
+<title>Why the River Sings | StoryVeda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #0a2a3a;
+    --teal: #0a8a8a;
+    --teal-light: #a0e0e0;
+    --aqua: #40c0c0;
+    --aqua-mid: #209898;
+    --cream: #f0faf8;
+    --text: #0a2a3a;
+    --text-muted: #3a6a7a;
+    --border: rgba(10,138,138,0.15);
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,42,58,0.92); backdrop-filter: blur(12px);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--teal-light); text-decoration: none; }
+  .nav-logo span { color: var(--aqua); }
+  .nav-back { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--teal-light); }
+
+  /* HERO */
+  .story-hero {
+    min-height: 60vh;
+    background: linear-gradient(160deg, #041e2a 0%, #0a3a4a 30%, #0a6a6a 60%, #0a9a8a 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-water-bg {
+    position: absolute; font-size: 30rem; line-height: 1;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none; user-select: none; opacity: 0.06;
+  }
+  .hero-rays {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 10%, rgba(160,224,224,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 5%, rgba(160,224,224,0.2) 0%, transparent 100%),
+      radial-gradient(2px 2px at 55% 12%, rgba(64,192,192,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 7%, rgba(160,224,224,0.2) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 90% 15%, rgba(64,192,192,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 18%, rgba(160,224,224,0.2) 0%, transparent 100%),
+      radial-gradient(2px 2px at 65% 10%, rgba(64,192,192,0.2) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(64,192,192,0.15) 0%, transparent 60%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .story-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(160,224,224,0.12); border: 1px solid rgba(160,224,224,0.25);
+    color: var(--teal-light); font-size: 0.75rem; font-weight: 800;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 1.2rem;
+    letter-spacing: 0.06em; text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .story-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700; color: white; line-height: 1.15;
+    margin-bottom: 1rem; position: relative; z-index: 1;
+  }
+  .story-hero h1 em { font-style: italic; color: var(--teal-light); }
+  .story-hero .tagline {
+    font-size: 1.1rem; color: rgba(255,255,255,0.7);
+    max-width: 520px; line-height: 1.7; margin-bottom: 2rem;
+    position: relative; z-index: 1;
+  }
+  .story-meta-chips { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .meta-chip {
+    padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+  }
+
+  /* STORY BODY */
+  .story-container { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .story-intro {
+    background: linear-gradient(135deg, #041e2a, #0a5a5a);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
+    border: 1px solid rgba(160,224,224,0.2);
+  }
+  .story-intro .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.6rem; color: var(--teal-light);
+    display: block; margin-bottom: 0.4rem; text-align: center;
+  }
+  .story-intro .translation { font-size: 0.88rem; color: rgba(255,255,255,0.55); text-align: center; font-style: italic; }
+
+  .story-section { margin-bottom: 2.8rem; }
+  .scene-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--teal); margin-bottom: 0.8rem;
+  }
+  .scene-label::before { content: ''; width: 24px; height: 2px; background: var(--teal); border-radius: 2px; }
+
+  .story-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 700; color: var(--deep);
+    margin-bottom: 1rem; line-height: 1.25;
+  }
+  .story-section p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #1a3a4a; margin-bottom: 1rem;
+  }
+
+  /* NATURE QUOTE */
+  .nature-quote {
+    background: linear-gradient(135deg, #041e2a, #0a5a5a);
+    border-radius: var(--radius); padding: 2rem 2.5rem;
+    margin: 2rem 0; border-left: 4px solid var(--aqua);
+    position: relative; text-align: center;
+  }
+  .nature-quote .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.4rem; color: var(--teal-light);
+    display: block; margin-bottom: 0.6rem; letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+  .nature-quote .translation {
+    font-size: 0.9rem; font-style: italic;
+    color: rgba(255,255,255,0.7); line-height: 1.7; margin: 0;
+  }
+
+  /* ILLUSTRATED MOMENT */
+  .story-moment {
+    border-radius: var(--radius); padding: 3rem 2rem;
+    text-align: center; margin: 2.5rem 0;
+    background: linear-gradient(135deg, #0a3a4a 0%, #0a8a8a 100%);
+    border: 1px solid rgba(160,224,224,0.2);
+  }
+  .story-moment .moment-emoji { font-size: 5rem; display: block; margin-bottom: 1rem; }
+  .story-moment img { width: 100%; max-width: 500px; border-radius: 16px; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3); height: auto; }
+  .story-moment p { color: rgba(255,255,255,0.7); font-size: 0.9rem; font-style: italic; max-width: 400px; margin: 0 auto; }
+
+  /* VALUE LEARNED */
+  .value-box {
+    background: #d4f0f0;
+    border: 1px solid rgba(10,138,138,0.25);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 3rem 0;
+  }
+  .value-box .value-tag {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--teal); margin-bottom: 0.8rem;
+    display: block;
+  }
+  .value-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #0a2a3a; margin-bottom: 0.6rem; }
+  .value-box p { font-size: 0.95rem; color: #1a4a4a; line-height: 1.7; margin-bottom: 0; }
+
+  /* REFLECT */
+  .reflect-box {
+    background: #d4f0f0; border: 1px solid rgba(10,138,138,0.2);
+    border-radius: var(--radius); padding: 2rem; margin: 2rem 0;
+  }
+  .reflect-box h3 { font-size: 1rem; font-weight: 800; color: var(--deep); margin-bottom: 1rem; }
+  .reflect-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .reflect-box li { font-size: 0.92rem; color: #1a3a4a; line-height: 1.6; display: flex; gap: 10px; }
+  .reflect-box li::before { content: ''; flex-shrink: 0; }
+
+  /* QUIZ */
+  .quiz-box {
+    background: linear-gradient(135deg, #041e2a, #0a6a6a);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 2rem 0; border: 1px solid rgba(160,224,224,0.2);
+    color: white;
+  }
+  .quiz-box h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--teal-light); margin-bottom: 0.4rem; }
+  .quiz-box .quiz-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+  .quiz-question { margin-bottom: 1.2rem; }
+  .quiz-q { font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; display: flex; gap: 6px; }
+  .quiz-q .q-num { color: var(--teal-light); }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; }
+  .quiz-opt {
+    padding: 10px 14px; border-radius: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; text-align: left;
+    font-family: 'Nunito', sans-serif;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .quiz-opt:hover { background: rgba(255,255,255,0.12); }
+  .quiz-opt.correct { background: rgba(42,180,80,0.25); border-color: rgba(42,180,80,0.4); color: #90ee90; }
+  .quiz-opt.wrong { background: rgba(220,60,60,0.2); border-color: rgba(220,60,60,0.3); color: #ff9090; }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.6; }
+  .quiz-opt .opt-icon { font-size: 0.8rem; width: 16px; text-align: center; }
+  .quiz-result { margin-top: 1.5rem; padding: 1rem; border-radius: 12px; text-align: center; display: none; }
+  .quiz-result.show { display: block; }
+  .quiz-result h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .quiz-result p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+  .quiz-result.perfect { background: rgba(42,180,80,0.15); border: 1px solid rgba(42,180,80,0.3); }
+  .quiz-result.perfect h4 { color: #90ee90; }
+  .quiz-result.good { background: rgba(64,192,192,0.12); border: 1px solid rgba(64,192,192,0.25); }
+  .quiz-result.good h4 { color: var(--teal-light); }
+  .quiz-result.try-again { background: rgba(220,60,60,0.1); border: 1px solid rgba(220,60,60,0.2); }
+  .quiz-result.try-again h4 { color: #ff9090; }
+  .quiz-restart {
+    display: inline-block; margin-top: 1rem; padding: 8px 20px;
+    border-radius: 50px; background: rgba(255,255,255,0.1);
+    color: var(--teal-light); border: 1px solid rgba(255,255,255,0.2);
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.82rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .quiz-restart:hover { background: rgba(255,255,255,0.2); }
+
+  /* NAV BUTTONS */
+  .story-nav { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .btn-primary {
+    background: var(--teal); color: white;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--aqua-mid); transform: translateY(-2px); }
+  .btn-secondary {
+    background: white; color: var(--teal);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    border: 1.5px solid rgba(10,138,138,0.25);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: #d4f0f0; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,0.5);
+    padding: 2rem; text-align: center; font-size: 0.82rem;
+  }
+  footer a { color: var(--teal-light); text-decoration: none; font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .story-container { padding: 2.5rem 1.2rem 4rem; }
+    .nature-quote { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../index.html">Story<span>Veda</span></a>
+  <a class="nav-back" href="../../index.html#stories">← Back to Stories</a>
+</nav>
+
+<!-- HERO -->
+<div class="story-hero">
+  <div class="hero-rays"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-water-bg" aria-hidden="true">🌊</div>
+  <div class="story-badge">🌊 Nature</div>
+  <h1>Why the River <em>Sings</em></h1>
+  <p class="tagline">A little girl named Kavya asked the river why it was so quiet. But the river was not quiet at all — no one had ever stopped to listen.</p>
+  <div class="story-meta-chips">
+    <span class="meta-chip">Ages 4–7</span>
+    <span class="meta-chip">📖 6 min read</span>
+    <span class="meta-chip">✦ Wonder</span>
+    <span class="meta-chip">✦ Gratitude</span>
+    <span class="meta-chip">✦ Listening</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="story-container">
+
+  <!-- Scene 1 -->
+  <div class="story-section">
+    <div class="scene-label">Scene one</div>
+    <h2>The River That Was Quiet</h2>
+    <p>Long ago, the river did not sing.</p>
+    <p>She flowed quietly — past the rocks, past the roots, past the sleeping kingfisher — without a single sound.</p>
+    <p>The forest was silent. And the river was the most silent of all.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🟡</span>
+    <p>[Image generation prompt: A gentle Indian river at early morning, smooth silver-blue water flowing between mossy rocks, mist rising from the surface, tall reeds on the banks, a small kingfisher perched on a stone, soft dawn light, no people yet, children's book watercolour illustration in cool periwinkle and silver with warm golden sunrise touches, peaceful and ethereal mood, no text]</p>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="story-section">
+    <div class="scene-label">Scene two</div>
+    <h2>The Little Girl Who Asked Why</h2>
+    <p>A little girl named Kavya came to the river every day.</p>
+    <p>She would sit at the edge and trail her fingers in the water.</p>
+    <p>One morning she asked: "River, why don't you sing? The wind sings. The crickets sing. Even Amma sings when she makes chai. Why are you silent?"</p>
+    <p>The river shimmered. But said nothing.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🟠</span>
+    <p>[Image generation prompt: A small Indian girl around 5 years old with two plaits and a bright pink frock sitting at the edge of a river, trailing her fingers in the water, looking at it with wide curious eyes, butterflies nearby, wildflowers on the bank, warm mid-morning dappled light, soft flat watercolour children's book style, joyful and wondering mood, lush greens and pinks, no text]</p>
+  </div>
+
+  <!-- Scene 3 -->
+  <div class="story-section">
+    <div class="scene-label">Scene three</div>
+    <h2>The River Remembers</h2>
+    <p>That night, Kavya dreamed.</p>
+    <p>She saw the river — but not just the small part near her home. She saw where it began, high up in the cold white mountains, a tiny trickle from a melting glacier.</p>
+    <p>She saw it grow. She saw animals drink from it. Farmers sing to it. Grandmothers fill brass pots from it. Fish leap inside it.</p>
+    <p>She saw a hundred villages, and the river running through every single one like a silver thread holding them together.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🔵</span>
+    <p>[Image generation prompt: A dreamlike sequence showing the same Indian river flowing through different landscapes, past a mountain with snow-capped peaks, through a forest where animals drink from its banks, past a village where women fill clay pots, a farmer irrigating fields, children splashing, fish leaping, all in soft circular vignette panels flowing from top to bottom, watercolour children's book illustration in blue-green and gold, sense of journey and abundance, no text]</p>
+  </div>
+
+  <!-- Scene 4 -->
+  <div class="story-section">
+    <div class="scene-label">Scene four</div>
+    <h2>The Song She Learns to Hear</h2>
+    <p>The next morning, Kavya sat by the river again.</p>
+    <p>She didn't trail her fingers this time. She just sat very, very still. And listened.</p>
+    <p>And then she heard it.</p>
+    <p>Gurgle. Rush. Whisper. Hum.</p>
+    <p>The river was singing all along. She just hadn't been quiet enough to hear it.</p>
+    <p>She laughed — a surprised, delighted laugh — and the river seemed to laugh with her.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🌸</span>
+    <p>[Image generation prompt: Same small Indian girl at the river's edge at sunrise, eyes closed and smiling, head slightly tilted as if listening, the water flowing gently around smooth stones creating tiny ripples, a soft golden light on her face, birds reflected in the water, children's book watercolour style, warm gold and silver-blue palette, joyful stillness, no text]</p>
+  </div>
+
+  <!-- MANTRA -->
+  <div class="nature-quote">
+    <span class="devanagari">ॐ गं गङ्गायै नमः</span>
+    <p class="translation">"Salutations to the sacred Ganga — the river that purifies and nourishes all life. Rivers are considered sacred in Vedic tradition — alive, wise, and worthy of gratitude."</p>
+  </div>
+
+  <!-- REFLECT -->
+  <div class="reflect-box">
+    <h3>💬 Talk About It Together</h3>
+    <ul>
+      <li>🌊 Have you ever heard a river, rain, or the wind make a sound that felt almost like music? What did it sound like?</li>
+      <li>👂 Kavya had to get very quiet to hear the river's song. What is something you've only noticed when you were really still and paying attention?</li>
+      <li>🌿 The river gave water to animals, farmers, grandmothers, and children. Can you think of something in nature that quietly helps everyone, without asking for anything?</li>
+      <li>💧 In India, rivers are treated like living beings. Do you think rivers have feelings? What do you think this river felt when Kavya finally listened?</li>
+    </ul>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-box" id="quizBox">
+    <h3>🧠 Story Quiz</h3>
+    <p class="quiz-sub">See how well you remember Ganga's story — pick the right answer for each!</p>
+    <div id="quizQuestions"></div>
+    <div class="quiz-result" id="quizResult">
+      <h4 id="quizResultTitle"></h4>
+      <p id="quizResultMsg"></p>
+      <button class="quiz-restart" onclick="resetQuiz()">🔄 Try Again</button>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="story-nav">
+    <a href="../../index.html#stories" class="btn-secondary">← All Stories</a>
+    <a href="../../index.html#connect" class="btn-primary">Get Next Story ✨</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>Part of <a href="../../index.html">StoryVeda</a> — Where ancient wisdom meets the magic of storytelling 🙏</p>
+</footer>
+
+<script>
+const quizData = [
+  {
+    q: "What did the river NOT do at the beginning of the story?",
+    opts: ["Flow", "Sing", "Shimmer", "Sparkle"],
+    correct: 1
+  },
+  {
+    q: "What was the little girl's name?",
+    opts: ["Meera", "Kavya", "Ganga", "Anjali"],
+    correct: 1
+  },
+  {
+    q: "What did Kavya see in her dream?",
+    opts: ["A mountain made of gold", "The river's journey from the mountains through villages", "A talking fish", "The ocean"],
+    correct: 1
+  },
+  {
+    q: "How did Kavya finally hear the river's song?",
+    opts: ["She asked louder", "She got very still and listened carefully", "She sang to the river first", "Her grandmother taught her"],
+    correct: 1
+  },
+  {
+    q: "What does the river teach us?",
+    opts: ["To be loud so people notice us", "To flow without stopping and give without asking", "To stay quiet forever", "To keep everything to ourselves"],
+    correct: 1
+  }
+];
+const emojis = ['🟡', '🟠', '🔵', '🌸', '🌊'];
+let answered = [];
+
+function renderQuiz() {
+  const container = document.getElementById('quizQuestions');
+  answered = quizData.map(() => null);
+  container.innerHTML = quizData.map((item, i) => `
+    <div class="quiz-question" data-q="${i}">
+      <div class="quiz-q"><span class="q-num">${emojis[i]}</span> ${item.q}</div>
+      <div class="quiz-options">
+        ${item.opts.map((opt, j) => `
+          <button class="quiz-opt" data-q="${i}" data-opt="${j}" onclick="pickAnswer(${i}, ${j}, this)">
+            <span class="opt-icon"></span> ${opt}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('quizResult').classList.remove('show');
+}
+
+function pickAnswer(qIdx, optIdx, btn) {
+  if (answered[qIdx] !== null) return;
+  answered[qIdx] = optIdx;
+  const item = quizData[qIdx];
+  const allBtns = document.querySelectorAll(`.quiz-opt[data-q="${qIdx}"]`);
+  allBtns.forEach(b => b.classList.add('disabled'));
+  allBtns.forEach(b => {
+    const i = parseInt(b.dataset.opt);
+    const icon = b.querySelector('.opt-icon');
+    if (i === item.correct) {
+      b.classList.add('correct');
+      icon.textContent = '✅';
+    } else if (i === optIdx) {
+      b.classList.add('wrong');
+      icon.textContent = '❌';
+    } else {
+      icon.textContent = '  ';
+    }
+  });
+  if (btn !== allBtns[item.correct]) {
+    allBtns[item.correct].querySelector('.opt-icon').textContent = '✅';
+  }
+  checkQuizComplete();
+}
+
+function checkQuizComplete() {
+  if (answered.some(a => a === null)) return;
+  const correct = answered.filter((a, i) => a === quizData[i].correct).length;
+  const total = quizData.length;
+  const result = document.getElementById('quizResult');
+  const title = document.getElementById('quizResultTitle');
+  const msg = document.getElementById('quizResultMsg');
+  result.classList.remove('perfect', 'good', 'try-again');
+  if (correct === total) {
+    result.classList.add('perfect', 'show');
+    title.textContent = '🎉 Perfect! All correct!';
+    msg.textContent = 'You listened so well! Kavya would be proud of you. 🌊';
+  } else if (correct >= 3) {
+    result.classList.add('good', 'show');
+    title.textContent = `🌟 ${correct}/${total} — Great job!`;
+    msg.textContent = 'Almost there! Read the story once more and try again.';
+  } else {
+    result.classList.add('try-again', 'show');
+    title.textContent = `💪 ${correct}/${total} — Keep trying!`;
+    msg.textContent = 'Every time you read the story, you learn something new. Give it another go!';
+  }
+}
+
+function resetQuiz() {
+  renderQuiz();
+  window.scrollTo({ top: document.getElementById('quizBox').offsetTop - 100, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

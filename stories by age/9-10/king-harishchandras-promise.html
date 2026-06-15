@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="King Harishchandra's Promise — A StoryVeda tale for ages 8–10 about truth and integrity. He lost everything — his kingdom, his family, his name. But one thing he never lost: the truth.">
+<title>King Harishchandra's Promise | StoryVeda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #0a0a3a;
+    --royal: #1a2090;
+    --royal-mid: #3038b0;
+    --royal-light: #c0c0ff;
+    --gold: #c8860a;
+    --gold-light: #FFF8E1;
+    --gold-mid: #e8a030;
+    --cream: #f8f6ff;
+    --text: #0a0a3a;
+    --text-muted: #5a5a8a;
+    --border: rgba(26,32,144,0.15);
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,58,0.95); backdrop-filter: blur(12px);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--royal-light); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-back { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--royal-light); }
+
+  /* HERO */
+  .story-hero {
+    min-height: 60vh;
+    background: linear-gradient(160deg, #05052a 0%, #0a0a3a 30%, #1a2090 60%, #c8860a 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-crown {
+    position: absolute; font-size: 28rem; line-height: 1;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none; user-select: none; opacity: 0.04;
+  }
+  .hero-stars {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 10%, rgba(192,192,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 5%, rgba(192,192,255,0.3) 0%, transparent 100%),
+      radial-gradient(2px 2px at 50% 20%, rgba(200,134,10,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 7%, rgba(192,192,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 90% 15%, rgba(200,134,10,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 18%, rgba(192,192,255,0.2) 0%, transparent 100%),
+      radial-gradient(2px 2px at 65% 30%, rgba(200,134,10,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 50%, rgba(192,192,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(200,134,10,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 80%, rgba(192,192,255,0.25) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(200,134,10,0.12) 0%, rgba(192,192,255,0.05) 40%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .story-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(200,134,10,0.12); border: 1px solid rgba(200,134,10,0.3);
+    color: var(--gold-mid); font-size: 0.75rem; font-weight: 800;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 1.2rem;
+    letter-spacing: 0.06em; text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .story-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700; color: white; line-height: 1.15;
+    margin-bottom: 1rem; position: relative; z-index: 1;
+  }
+  .story-hero h1 em { font-style: italic; color: var(--gold); }
+  .story-hero .tagline {
+    font-size: 1.1rem; color: rgba(255,255,255,0.65);
+    max-width: 560px; line-height: 1.7; margin-bottom: 2rem;
+    position: relative; z-index: 1;
+  }
+  .story-meta-chips { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .meta-chip {
+    padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+  }
+
+  /* STORY BODY */
+  .story-container { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .story-intro {
+    background: linear-gradient(135deg, #0a0a3a, #1a2090);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
+    border: 1px solid rgba(200,134,10,0.3);
+  }
+  .story-intro .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.6rem; color: var(--gold-mid);
+    display: block; margin-bottom: 0.4rem; text-align: center;
+  }
+  .story-intro .translation { font-size: 0.88rem; color: rgba(255,255,255,0.55); text-align: center; font-style: italic; }
+
+  .story-section { margin-bottom: 2.8rem; }
+  .scene-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .scene-label::before { content: ''; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; }
+
+  .story-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 700; color: var(--deep);
+    margin-bottom: 1rem; line-height: 1.25;
+  }
+  .story-section p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #1a1a4a; margin-bottom: 1rem;
+  }
+
+  /* TRUTH QUOTE */
+  .truth-quote {
+    background: linear-gradient(135deg, #0a0a3a, #1a2090);
+    border-radius: var(--radius); padding: 2rem 2.5rem;
+    margin: 2rem 0; border-left: 4px solid var(--gold);
+    position: relative; text-align: center;
+  }
+  .truth-quote .devanagari {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.4rem; color: var(--gold-mid);
+    display: block; margin-bottom: 0.6rem; letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+  .truth-quote .translation {
+    font-size: 0.9rem; font-style: italic;
+    color: rgba(255,255,255,0.7); line-height: 1.7; margin: 0;
+  }
+  .truth-quote .source {
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--royal-light); margin-top: 0.6rem;
+    display: block; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* ILLUSTRATED MOMENT */
+  .story-moment {
+    border-radius: var(--radius); padding: 3rem 2rem;
+    text-align: center; margin: 2.5rem 0;
+    background: linear-gradient(135deg, #0a0a3a 0%, #c8860a 100%);
+    border: 1px solid rgba(192,192,255,0.2);
+  }
+  .story-moment .moment-emoji { font-size: 5rem; display: block; margin-bottom: 1rem; }
+  .story-moment img { width: 100%; max-width: 500px; border-radius: 16px; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3); height: auto; }
+  .story-moment p { color: rgba(255,255,255,0.7); font-size: 0.9rem; font-style: italic; max-width: 400px; margin: 0 auto; }
+
+  /* VALUE LEARNED */
+  .value-box {
+    background: var(--gold-light);
+    border: 1px solid rgba(200,134,10,0.25);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 3rem 0;
+  }
+  .value-box .value-tag {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.8rem;
+    display: block;
+  }
+  .value-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #1a1a4a; margin-bottom: 0.6rem; }
+  .value-box p { font-size: 0.95rem; color: #4a4a6a; line-height: 1.7; margin-bottom: 0; }
+
+  /* REFLECT */
+  .reflect-box {
+    background: #e8e8ff; border: 1px solid rgba(26,32,144,0.2);
+    border-radius: var(--radius); padding: 2rem; margin: 2rem 0;
+  }
+  .reflect-box h3 { font-size: 1rem; font-weight: 800; color: var(--royal); margin-bottom: 1rem; }
+  .reflect-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .reflect-box li { font-size: 0.92rem; color: #1a1a5a; line-height: 1.6; display: flex; gap: 10px; }
+  .reflect-box li::before { content: ''; flex-shrink: 0; }
+
+  /* QUIZ */
+  .quiz-box {
+    background: linear-gradient(135deg, #0a0a3a, #1a2090);
+    border-radius: var(--radius); padding: 2rem;
+    margin: 2rem 0; border: 1px solid rgba(200,134,10,0.3);
+    color: white;
+  }
+  .quiz-box h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold-mid); margin-bottom: 0.4rem; }
+  .quiz-box .quiz-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+  .quiz-question { margin-bottom: 1.2rem; }
+  .quiz-q { font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; display: flex; gap: 6px; }
+  .quiz-q .q-num { color: var(--gold-mid); }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; }
+  .quiz-opt {
+    padding: 10px 14px; border-radius: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; text-align: left;
+    font-family: 'Nunito', sans-serif;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .quiz-opt:hover { background: rgba(255,255,255,0.12); }
+  .quiz-opt.correct { background: rgba(42,180,80,0.25); border-color: rgba(42,180,80,0.4); color: #90ee90; }
+  .quiz-opt.wrong { background: rgba(220,60,60,0.2); border-color: rgba(220,60,60,0.3); color: #ff9090; }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.6; }
+  .quiz-opt .opt-icon { font-size: 0.8rem; width: 16px; text-align: center; }
+  .quiz-result { margin-top: 1.5rem; padding: 1rem; border-radius: 12px; text-align: center; display: none; }
+  .quiz-result.show { display: block; }
+  .quiz-result h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .quiz-result p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+  .quiz-result.perfect { background: rgba(42,180,80,0.15); border: 1px solid rgba(42,180,80,0.3); }
+  .quiz-result.perfect h4 { color: #90ee90; }
+  .quiz-result.good { background: rgba(200,134,10,0.15); border: 1px solid rgba(200,134,10,0.3); }
+  .quiz-result.good h4 { color: var(--gold-mid); }
+  .quiz-result.try-again { background: rgba(220,60,60,0.1); border: 1px solid rgba(220,60,60,0.2); }
+  .quiz-result.try-again h4 { color: #ff9090; }
+  .quiz-restart {
+    display: inline-block; margin-top: 1rem; padding: 8px 20px;
+    border-radius: 50px; background: rgba(255,255,255,0.1);
+    color: var(--gold-mid); border: 1px solid rgba(255,255,255,0.2);
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.82rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .quiz-restart:hover { background: rgba(255,255,255,0.2); }
+
+  /* NAV BUTTONS */
+  .story-nav { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .btn-primary {
+    background: var(--gold); color: white;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #d9940a; transform: translateY(-2px); }
+  .btn-secondary {
+    background: white; color: var(--royal);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    border: 1.5px solid rgba(26,32,144,0.25);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: #e8e8ff; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,0.5);
+    padding: 2rem; text-align: center; font-size: 0.82rem;
+  }
+  footer a { color: var(--gold-mid); text-decoration: none; font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .story-container { padding: 2.5rem 1.2rem 4rem; }
+    .truth-quote { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../index.html">Story<span>Veda</span></a>
+  <a class="nav-back" href="../../index.html#stories">← Back to Stories</a>
+</nav>
+
+<!-- HERO -->
+<div class="story-hero">
+  <div class="hero-stars"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-crown" aria-hidden="true">👑</div>
+  <div class="story-badge">⚖️ Dharma</div>
+  <h1>King Harishchandra's <em>Promise</em></h1>
+  <p class="tagline">He lost everything — his kingdom, his family, his freedom — because he refused to break his word. A timeless story of truth that triumphs over all.</p>
+  <div class="story-meta-chips">
+    <span class="meta-chip">Ages 8–10</span>
+    <span class="meta-chip">📖 12 min read</span>
+    <span class="meta-chip">✦ Truth</span>
+    <span class="meta-chip">✦ Integrity</span>
+    <span class="meta-chip">✦ Steadfastness</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="story-container">
+
+  <!-- Scene 1 -->
+  <div class="story-section">
+    <div class="scene-label">Scene one</div>
+    <h2>The King Who Never Lied</h2>
+    <p>King Harishchandra ruled a kingdom full of light.</p>
+    <p>Not because he had the biggest army, or the most gold.</p>
+    <p>But because he had made one promise to himself, and kept it every single day:</p>
+    <p>I will never speak a lie. Not even one. Not ever.</p>
+    <p>Everyone in his kingdom knew this. And they trusted him completely.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🟡</span>
+    <p>[Image generation prompt: A noble Indian king in golden robes seated in a sunlit open-air court, surrounded by citizens of all kinds, farmers, scholars, children, merchants, his expression wise and kind, a white palace behind him with lotus ponds, banner with a sun emblem, flat watercolour children's book illustration, warm gold and ivory palette, atmosphere of justice and peace, no text]</p>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="story-section">
+    <div class="scene-label">Scene two</div>
+    <h2>The Sage's Impossible Demand</h2>
+    <p>One day, the great sage Vishwamitra came to Harishchandra.</p>
+    <p>"You have promised dana — a gift — to me," he said. "I am here to collect it."</p>
+    <p>Harishchandra had made that promise in a dream. But a promise was a promise.</p>
+    <p>"Ask for anything," the king said.</p>
+    <p>Vishwamitra asked for everything. The palace. The treasury. The kingdom.</p>
+    <p>Harishchandra gave it all without a single word of complaint. A promise was a promise.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🟠</span>
+    <p>[Image generation prompt: An ancient Indian forest clearing, a fierce-eyed sage Vishwamitra in ochre robes standing before King Harishchandra and his family, Harishchandra looking troubled but resolute, his queen Shaivya in a simple blue sari beside him, a young boy Rohit holding his mother's hand, dramatic composition with shafts of forest light, watercolour children's book illustration, deep forest greens and golden amber, tense and solemn atmosphere, no text]</p>
+  </div>
+
+  <!-- Scene 3 -->
+  <div class="story-section">
+    <div class="scene-label">Scene three</div>
+    <h2>The Cremation Ground</h2>
+    <p>Vishwamitra tested Harishchandra again and again.</p>
+    <p>The king lost his queen, his son, and even his freedom. He ended up working at a cremation ground with nothing left but his name.</p>
+    <p>Still, when people came to him and needed help recording the truth of who had died, he recorded it honestly.</p>
+    <p>Even when a terrible day came — a day when the body brought before him was his own beloved son, Rohit — Harishchandra's hand did not shake as he recorded the truth.</p>
+    <p>He wept. But he did not lie.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🔴</span>
+    <p>[Image generation prompt: A sombre ancient Indian cremation ground at dusk, a dignified man in simple white clothing working quietly, a woman and young boy approaching with thin plain clothes but upright dignified posture, small oil lamps dotting the path, a crescent moon visible, the overall mood sorrowful but not despairing, soft muted watercolour illustration in deep grey-blue and pale gold tones, no text]</p>
+  </div>
+
+  <!-- Scene 4 -->
+  <div class="story-section">
+    <div class="scene-label">Scene four</div>
+    <h2>The Kingdom of Truth</h2>
+    <p>Then the gods came.</p>
+    <p>They revealed what Harishchandra and his family did not yet know: Rohit was alive. It had been a test.</p>
+    <p>They offered Harishchandra his kingdom back. His crown. His glory.</p>
+    <p>Harishchandra was quiet for a long moment.</p>
+    <p>"I am grateful," he said. "But the greatest thing I have — I never lost it. I kept my truth."</p>
+    <p>He accepted his kingdom. But that was not what made him smile.</p>
+  </div>
+
+  <div class="story-moment">
+    <span class="moment-emoji">🌟</span>
+    <p>[Image generation prompt: A radiant scene of an Indian king and queen reunited, standing under a golden sky with flower petals raining down, divine figures watching from above in soft light, the king in humble white robes rather than royal finery, his expression not triumphant but deeply peaceful, a young boy running toward them, citizens watching with tears of joy, watercolour children's book illustration, rich warm gold and rose pink, sense of sacred joy rather than worldly triumph, no text]</p>
+  </div>
+
+  <!-- MANTRA -->
+  <div class="truth-quote">
+    <span class="devanagari">सत्यं वद। धर्मं चर।</span>
+    <p class="translation">"Speak the truth. Walk the path of Dharma." — Taittiriya Upanishad. One of the most ancient Vedic teachings, given by a guru to students as they leave school and go into the world. It is a reminder that all learning, all achievement, rests on these two foundations.</p>
+  </div>
+
+  <!-- REFLECT -->
+  <div class="reflect-box">
+    <h3>💬 Talk About It Together</h3>
+    <ul>
+      <li>👑 Harishchandra lost everything — his palace, his family, his freedom — but he never lost his truth. Do you think truth is worth that much? Why?</li>
+      <li>😔 There was a moment when lying would have made everything easier for Harishchandra. Have you ever been in a situation where telling the truth was hard? What did you do?</li>
+      <li>🌿 The gods were watching and testing him. Do you think people should be honest only when someone is watching — or always? What's the difference?</li>
+      <li>💛 Harishchandra said the greatest thing he had was never lost. What is something inside you that no one could ever take away?</li>
+    </ul>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-box" id="quizBox">
+    <h3>🧠 Story Quiz</h3>
+    <p class="quiz-sub">See how well you remember King Harishchandra's story — pick the right answer for each!</p>
+    <div id="quizQuestions"></div>
+    <div class="quiz-result" id="quizResult">
+      <h4 id="quizResultTitle"></h4>
+      <p id="quizResultMsg"></p>
+      <button class="quiz-restart" onclick="resetQuiz()">🔄 Try Again</button>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="story-nav">
+    <a href="../../index.html#stories" class="btn-secondary">← All Stories</a>
+    <a href="../../index.html#connect" class="btn-primary">Get Next Story ✨</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>Part of <a href="../../index.html">StoryVeda</a> — Where ancient wisdom meets the magic of storytelling 🙏</p>
+</footer>
+
+<script>
+const quizData = [
+  {
+    q: "What promise did King Harishchandra make to himself?",
+    opts: ["To never be poor", "To never speak a lie", "To build the biggest palace", "To conquer every kingdom"],
+    correct: 1
+  },
+  {
+    q: "Who came to test Harishchandra's truthfulness?",
+    opts: ["Lord Vishnu", "Sage Vishwamitra", "Lord Indra", "Sage Narada"],
+    correct: 1
+  },
+  {
+    q: "What did Vishwamitra demand from Harishchandra?",
+    opts: ["A single coin", "Everything — palace, treasury, kingdom", "A promise to build a temple", "His crown"],
+    correct: 1
+  },
+  {
+    q: "Where did Harishchandra end up working after losing everything?",
+    opts: ["A farm", "A cremation ground", "A temple", "A forest ashram"],
+    correct: 1
+  },
+  {
+    q: "What does the mantra 'Satyam vada, dharmam cara' mean?",
+    opts: ["Fight for what is yours", "Speak the truth, walk the path of dharma", "Pray every day", "Honour your parents"],
+    correct: 1
+  }
+];
+const emojis = ['👑', '🟠', '🔴', '🌟', '✨'];
+let answered = [];
+
+function renderQuiz() {
+  const container = document.getElementById('quizQuestions');
+  answered = quizData.map(() => null);
+  container.innerHTML = quizData.map((item, i) => `
+    <div class="quiz-question" data-q="${i}">
+      <div class="quiz-q"><span class="q-num">${emojis[i]}</span> ${item.q}</div>
+      <div class="quiz-options">
+        ${item.opts.map((opt, j) => `
+          <button class="quiz-opt" data-q="${i}" data-opt="${j}" onclick="pickAnswer(${i}, ${j}, this)">
+            <span class="opt-icon"></span> ${opt}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('quizResult').classList.remove('show');
+}
+
+function pickAnswer(qIdx, optIdx, btn) {
+  if (answered[qIdx] !== null) return;
+  answered[qIdx] = optIdx;
+  const item = quizData[qIdx];
+  const allBtns = document.querySelectorAll(`.quiz-opt[data-q="${qIdx}"]`);
+  allBtns.forEach(b => b.classList.add('disabled'));
+  allBtns.forEach(b => {
+    const i = parseInt(b.dataset.opt);
+    const icon = b.querySelector('.opt-icon');
+    if (i === item.correct) {
+      b.classList.add('correct');
+      icon.textContent = '✅';
+    } else if (i === optIdx) {
+      b.classList.add('wrong');
+      icon.textContent = '❌';
+    } else {
+      icon.textContent = '  ';
+    }
+  });
+  if (btn !== allBtns[item.correct]) {
+    allBtns[item.correct].querySelector('.opt-icon').textContent = '✅';
+  }
+  checkQuizComplete();
+}
+
+function checkQuizComplete() {
+  if (answered.some(a => a === null)) return;
+  const correct = answered.filter((a, i) => a === quizData[i].correct).length;
+  const total = quizData.length;
+  const result = document.getElementById('quizResult');
+  const title = document.getElementById('quizResultTitle');
+  const msg = document.getElementById('quizResultMsg');
+  result.classList.remove('perfect', 'good', 'try-again');
+  if (correct === total) {
+    result.classList.add('perfect', 'show');
+    title.textContent = '🎉 Perfect! All correct!';
+    msg.textContent = 'You truly understood Harishchandra\'s story. Satyameva Jayate! ✨';
+  } else if (correct >= 3) {
+    result.classList.add('good', 'show');
+    title.textContent = `🌟 ${correct}/${total} — Great job!`;
+    msg.textContent = 'Almost there! Read the story once more and try again to get them all.';
+  } else {
+    result.classList.add('try-again', 'show');
+    title.textContent = `💪 ${correct}/${total} — Keep trying!`;
+    msg.textContent = 'Reading the story again will help you remember. Every time you learn something new!';
+  }
+}
+
+function resetQuiz() {
+  renderQuiz();
+  window.scrollTo({ top: document.getElementById('quizBox').offsetTop - 100, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
